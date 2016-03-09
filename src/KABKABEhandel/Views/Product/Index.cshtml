@@ -9,10 +9,10 @@
 
 <form>
     <div class="row">
-            <div class="col-md-3">
-                
-                @foreach (var item in Model)
-                {
+        <div class="col-md-3">
+
+            @foreach (var item in Model)
+            {
                 @if (item.IsActive)
                 {
                     <div class="item">
@@ -21,18 +21,18 @@
                     <h2>item.Name</h2>
                     <h2>item.Description</h2>
                     <h2>item.Price</h2>
-                    
+
                     <button type="button" id="buyBtn" onclick="addToCart(@item.Id)">Add to cart</button>
                 }
 
-                }
+            }
 
-                
 
-            </div>
+
         </div>
+    </div>
 </form>
-    @*<form>
+@*<form>
         <div class="row">
             <div class="col-md-3">
 
