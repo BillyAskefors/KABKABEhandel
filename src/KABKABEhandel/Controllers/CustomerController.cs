@@ -49,7 +49,7 @@ namespace KABKABEhandel.Controllers
             //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
             //skicka in i databasen.
 
-            return View("index");
+            return RedirectToAction(nameof(HomeController.Index));
             
         }
 
