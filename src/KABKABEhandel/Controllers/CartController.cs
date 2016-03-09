@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using KABKABEhandel.ViewModels.Carts;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,37 +18,37 @@ namespace KABKABEhandel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult AddToCart()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add(AddProductViewModel viewModel)
+        public IActionResult AddtoCart(AddToCartViewModel viewModel)
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult Remove()
+        public IActionResult RemoveFromCart()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Remove(RemoveProductViewModel viewModel)
+        public IActionResult RemoveFromCart(RemoveFromCartViewModel viewModel)
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult EditInCart()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Edit(EditProductViewModel viewModel)
+        public IActionResult EditInCart(EditInCartViewModel viewModel)
         {
             return View();
         }
