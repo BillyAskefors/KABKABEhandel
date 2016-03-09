@@ -28,17 +28,17 @@ namespace KABKABEhandel.Models
 
         public void EditProduct(EditProductViewModel viewModel)
         {
-            var tempProduct = new Product();
-            tempProduct = Select products
-                .Where(c => c.ID == viewModel.ID)
-                .Select(c => new EditProductViewModel
-                {
-                    ID = c.ID,
-                    Name = viewModel.Name
-                })
-                .SingleOrDefault();
+            //var tempProduct = new Product();
+            //tempProduct = Select products
+            //    .Where(c => c.ID == viewModel.ID)
+            //    .Select(c => new EditProductViewModel
+            //    {
+            //        ID = c.ID,
+            //        Name = viewModel.Name
+            //    })
+            //    .SingleOrDefault();
 
-            products.Add(tempProduct);
+            //products.Add(tempProduct);
         }
 
         public ListProductViewModel[] ListProducts()

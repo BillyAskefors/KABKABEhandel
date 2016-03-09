@@ -38,10 +38,10 @@ namespace KABKABEhandel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove(RemoveProductViewModel viewModel)
-        {
-            return View();
-        }
+        //public IActionResult Remove(RemoveProductViewModel viewModel)
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult EditInCart()

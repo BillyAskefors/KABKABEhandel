@@ -24,11 +24,11 @@ namespace KABKABEhandel.Controllers
             return View(model);
         }
         
-        public IActionResult GetAllDetails()
-        {
-            var dataManager = new DataManager();
-            var model = dataManager.ListDetails();
-            return View(model);
-        }
+        //public IActionResult GetAllDetails()
+        //{
+        //    var dataManager = new DataManager();
+        //    var model = dataManager.ListDetails();
+        //    return View(model);
+        //}
     }
 }
