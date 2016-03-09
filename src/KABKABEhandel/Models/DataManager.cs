@@ -26,20 +26,20 @@ namespace KABKABEhandel.Models
             products.Add(product);
         }
 
-        public void EditProduct(EditProductViewModel viewModel)
-        {
-            var tempProduct = new Product();
-            tempProduct = Select products
-                .Where(c => c.ID == viewModel.ID)
-                .Select(c => new EditProductViewModel
-                {
-                    ID = c.ID,
-                    Name = viewModel.Name
-                })
-                .SingleOrDefault();
+        //public void EditProduct(EditProductViewModel viewModel)
+        //{
+        //    var tempProduct = new Product();
+        //    tempProduct = Select products
+        //        .Where(c => c.ID == viewModel.ID)
+        //        .Select(c => new EditProductViewModel
+        //        {
+        //            ID = c.ID,
+        //            Name = viewModel.Name
+        //        })
+        //        .SingleOrDefault();
 
-            products.Add(tempProduct);
-        }
+        //    products.Add(tempProduct);
+        //}
 
         public ListProductViewModel[] ListProducts()
         {
