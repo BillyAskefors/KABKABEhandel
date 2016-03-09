@@ -41,7 +41,16 @@ namespace KABKABEhandel.Controllers
         [HttpPost]
         public IActionResult CreateCustomer(CreateCustomerViewModel viewModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
+            //skicka in i databasen.
+
+            return View("index");
+            
         }
 
     }
