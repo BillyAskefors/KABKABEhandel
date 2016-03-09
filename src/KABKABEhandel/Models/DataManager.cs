@@ -29,7 +29,7 @@ namespace KABKABEhandel.Models
         public void EditProduct(EditProductViewModel viewModel)
         {
             var tempProduct = new Product();
-            tempProduct = select products
+            tempProduct = Select products
                 .Where(c => c.ID == viewModel.ID)
                 .Select(c => new EditProductViewModel
                 {
