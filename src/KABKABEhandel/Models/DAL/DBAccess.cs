@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace KABKABEhandel.Models.DAL
 {
-    public class DbAccess
+    internal abstract class DbAccess
     {
 
         private SqlConnection connection;
 
         public DbAccess(SqlConnection connection)
         {
+                        
             this.connection = connection;
            
         }
