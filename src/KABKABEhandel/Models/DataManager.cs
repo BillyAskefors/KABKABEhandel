@@ -1,4 +1,5 @@
-﻿using KABKABEhandel.ViewModels;
+﻿using KABKABEhandel.Models.DAL;
+using KABKABEhandel.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,18 @@ namespace KABKABEhandel.Models
     {
         static List<Product> products = new List<Product>();
 
+        EHandelDB db;
+
         static DataManager()
         {
             products.Add(new Product(1, "Mastersword"));
             products.Add(new Product(2, "Mirror Shield"));
             products.Add(new Product(3, "Green Hood"));
+        }
+
+        public DataManager(EHandelDB dbContext)
+        {
+            db = dbContext; 
         }
 
         public void AddProduct(AddProductViewModel viewModel)
@@ -55,13 +63,20 @@ namespace KABKABEhandel.Models
         public ListProductViewModel ListSingleProduct(int id)
         {
             return products
-                .Where(c => c.ID == id)
+                .Where(c => c.Id == id)
                 .Select(c => new ListProductViewModel
                 {
-                    ID = c.ID,
+                    ID = c.Id,
                     Name = c.Name
                 })
                 .SingleOrDefault();
+        }
+
+        public ListProductViewModel[] GetLatestProducts()
+        { 
+            return db.GetLatestProducts()
+                .Select(product => new ListProductViewModel { ID = product.Id, Name = product.Name, Details = product.Description })
+                .ToArray();
         }
 
         //public string ListDetails(int id)

@@ -11,7 +11,7 @@ namespace KABKABEhandel.Models
         {
             Name = name;
             Price = price;
-            ID = id;
+            Id = id;
             Description = description;
             //Details = details;
             Discount = discount;
@@ -28,12 +28,12 @@ namespace KABKABEhandel.Models
             //AcValue = acValue;
             //SupSKU = supSKU;
 
-            ProductList = new List<Product>();
+            //ProductList = new List<Product>();
         }
 
         public Product(int id, string name) //Konstruktor som är till för att admin ska kunna lägga till en produkt som inte är klar än
         {
-            ID = id;
+            Id = id;
             Name = name;
         }
 
@@ -43,7 +43,7 @@ namespace KABKABEhandel.Models
 
         public string Name { get; set; }
         public double Price { get; set; }
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
         //public string Details { get; set; }
         public int Discount { get; set; }
@@ -58,6 +58,6 @@ namespace KABKABEhandel.Models
         //public string Measurements { get; set; }
         //public double AcValue { get; set; }
         //public string SupSKU { get; set; }
-        public List<Product> ProductList { get; set; }
+        //public List<Product> ProductList { get; set; }
     }
 }

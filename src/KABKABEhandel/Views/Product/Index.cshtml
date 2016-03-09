@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Product Page";
 }
+
+@model KABKABEhandel.ViewModels.ListProductViewModel[]
+
 <script>
     function addToCart(id){
         alert(id); //Skapa metod som lägger till produkten i varukorgen.
@@ -13,17 +16,15 @@
 
             @foreach (var item in Model)
             {
-                @if (item.IsActive)
-                {
-                    <div class="item">
-                        <img src="@item.ImageURL" class="img-responsive" />
+                 <div class="item">
+                        <img src="@item.ID" class="img-responsive" />
                     </div>
-                    <h2>item.Name</h2>
-                    <h2>item.Description</h2>
-                    <h2>item.Price</h2>
+                    <h2>@item.Name</h2>
+                    <h2>@item.Details</h2>
+                    <h2>@item.ID</h2>
 
-                    <button type="button" id="buyBtn" onclick="addToCart(@item.Id)">Add to cart</button>
-                }
+                    <button type="button" id="buyBtn" onclick="addToCart(@item.ID)">Add to cart</button>
+                
 
             }
 

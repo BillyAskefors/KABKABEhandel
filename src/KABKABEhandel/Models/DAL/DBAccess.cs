@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KABKABEhandel.Models.DAL
 {
-    internal abstract class DbAccess
+    public abstract class DbAccess
     {
 
         private SqlConnection connection;
@@ -19,7 +19,7 @@ namespace KABKABEhandel.Models.DAL
            
         }
 
-        public int ExcecuteNonQuery(SqlCommand cmd, out string message)
+        protected int ExcecuteNonQuery(SqlCommand cmd, out string message)
         {
             int affectedRows = 0;
 
@@ -44,7 +44,7 @@ namespace KABKABEhandel.Models.DAL
             return affectedRows;
         }
 
-        public DataSet ExecuteQuery(SqlCommand cmd, string tableName, out string message)
+        protected DataSet ExecuteQuery(SqlCommand cmd, string tableName, out string message)
         {
             DataSet dataSet = new DataSet();
 
