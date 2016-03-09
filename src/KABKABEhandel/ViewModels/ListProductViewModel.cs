@@ -10,7 +10,7 @@ namespace KABKABEhandel.ViewModels
     {
         [Display(Name = "Product name")]
         public string Name { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Details { get; set; }
     }
 }
