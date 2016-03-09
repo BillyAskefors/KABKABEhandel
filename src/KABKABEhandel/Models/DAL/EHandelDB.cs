@@ -18,7 +18,7 @@ namespace KABKABEhandel.Models.DAL
 
         }
 
-        public int AddCustomer(Customer newCustomer, out string msg)
+        private int AddCustomer(Customer newCustomer, out string msg)
         {
            
             cmd = new SqlCommand();
@@ -37,7 +37,26 @@ namespace KABKABEhandel.Models.DAL
 
         
 
-        
+        private int AddAddress(Address newAddress, out string msg)
+        {
+
+            cmd = new SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "spAddCustomer";
+            cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 320)).Value = newCustomer.Email;
+            cmd.Parameters.Add(new SqlParameter("@FirstName", SqlDbType.NVarChar, 30)).Value = newCustomer.FirstName;
+            cmd.Parameters.Add(new SqlParameter("@LastName", SqlDbType.NVarChar, 30)).Value = newCustomer.LastName;
+            cmd.Parameters.Add(new SqlParameter("@Phone", SqlDbType.NVarChar, 30)).Value = newCustomer.Phone;
+
+            int affectedRows = ExcecuteNonQuery(cmd, out msg);
+
+            return affectedRows;
+
+        }
+
+
+
+
 
 
 

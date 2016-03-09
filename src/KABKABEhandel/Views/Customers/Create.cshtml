@@ -7,6 +7,7 @@
 <form asp-controller="Customers" asp-action="CreateCustomer" method="post" class="form-horizontal" role="form">
     <h4>Create a Customer.</h4>
     <hr />
+    <p>@ViewBag.msg<p>
     <div class="form-group">
         <label asp-for="FirstName" class="col-md-2 control-label"></label>
         <div class="col-md-10">

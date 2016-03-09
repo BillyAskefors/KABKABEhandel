@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using KABKABEhandel.ViewModels.Customers;
+using KABKABEhandel.Models.DAL;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,12 +44,14 @@ namespace KABKABEhandel.Controllers
         {
             if (!ModelState.IsValid)
             {
+               
+
                 return View(viewModel);
             }
 
             //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
             //skicka in i databasen.
-
+           
             return RedirectToAction(nameof(HomeController.Index));
             
         }
