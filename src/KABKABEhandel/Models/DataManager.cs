@@ -12,9 +12,9 @@ namespace KABKABEhandel.Models
 
         static DataManager()
         {
-            products.Add(new Product("1", "Mastersword"));
-            products.Add(new Product("2", "Mirror Shield"));
-            products.Add(new Product("3", "Green Hood"));
+            products.Add(new Product(1, "Mastersword"));
+            products.Add(new Product(2, "Mirror Shield"));
+            products.Add(new Product(3, "Green Hood"));
         }
 
         public void AddProduct(AddProductViewModel viewModel)
@@ -52,7 +52,7 @@ namespace KABKABEhandel.Models
                 .ToArray();
         }
 
-        public ListProductViewModel ListSingleProduct(string id)
+        public ListProductViewModel ListSingleProduct(int id)
         {
             return products
                 .Where(c => c.ID == id)
@@ -64,7 +64,7 @@ namespace KABKABEhandel.Models
                 .SingleOrDefault();
         }
 
-        public string ListDetails(string id)
+        public string ListDetails(int id)
         {
             return products
                 .Where(c => c.ID == id)

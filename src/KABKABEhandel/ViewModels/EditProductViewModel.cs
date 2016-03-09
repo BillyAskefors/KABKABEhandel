@@ -11,6 +11,6 @@ namespace KABKABEhandel.ViewModels
         [Display(Name = "Product name")]
         [Required(ErrorMessage = "Enter a product name")]
         public string Name { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
     }
 }

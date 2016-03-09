@@ -7,7 +7,7 @@ namespace KABKABEhandel.Models
 {
     public class Product
     {
-        public Product(string name, double price, string id, string description, string details, int discount, int numInStock,
+        public Product(string name, double price, int id, string description, string details, int discount, int numInStock,
             string status, string stockPos, string color, double weight, string measurements, double acValue, string supSKU)
         {
             Name = name;
@@ -28,7 +28,7 @@ namespace KABKABEhandel.Models
             ProdcutList = new List<Product>();
         }
 
-        public Product(string id, string name) //Konstruktor som är till för att admin ska kunna lägga till en produkt som inte är klar än
+        public Product(int id, string name) //Konstruktor som är till för att admin ska kunna lägga till en produkt som inte är klar än
         {
             ID = id;
             Name = name;
@@ -40,7 +40,7 @@ namespace KABKABEhandel.Models
 
         public string Name { get; set; }
         public double Price { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Description { get; set; }
         public string Details { get; set; }
         public int Discount { get; set; }
