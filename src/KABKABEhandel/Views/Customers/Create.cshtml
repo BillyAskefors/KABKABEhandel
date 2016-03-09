@@ -1,6 +1,9 @@
 ﻿@using KABKABEhandel.ViewModels.Customers
 @model CreateCustomerViewModel
 
+@{
+    ViewData["Title"] = "Create Customer";
+}
 <form asp-controller="Customers" asp-action="CreateCustomer" method="post" class="form-horizontal" role="form">
     <h4>Create a Customer.</h4>
     <hr />

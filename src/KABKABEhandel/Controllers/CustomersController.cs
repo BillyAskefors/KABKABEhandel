@@ -9,7 +9,7 @@ using KABKABEhandel.ViewModels.Customers;
 
 namespace KABKABEhandel.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
@@ -33,13 +33,13 @@ namespace KABKABEhandel.Controllers
         //    return View();
         //}
 
-        public IActionResult CreateCustomer()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateCustomer(CreateCustomerViewModel viewModel)
+        public IActionResult Create(CreateCustomerViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
