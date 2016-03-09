@@ -64,15 +64,15 @@ namespace KABKABEhandel.Models
                 .SingleOrDefault();
         }
 
-        public string ListDetails(int id)
-        {
-            return products
-                .Where(c => c.ID == id)
-                .Select(p => new ListProductViewModel
-                {
-                    Details = p.Details
-                })
-                .ToString();
-        }
+        //public string ListDetails(int id)
+        //{
+        //    return products
+        //        .Where(c => c.ID == id)
+        //        .Select(p => new ListProductViewModel
+        //        {
+        //            Details = p.Details
+        //        })
+        //        .ToString();
+        //}
     }
 }
