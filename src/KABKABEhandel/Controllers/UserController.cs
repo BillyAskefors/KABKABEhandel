@@ -26,21 +26,21 @@ namespace KABKABEhandel.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditInfo(EditInfoViewModel viewModel)
-        {
-            return View();
-        }
+        //public IActionResult EditInfo(EditInfoViewModel viewModel)
+        //{
+        //    return View();
+        //}
 
         public IActionResult CreateUser()
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult CreateUser()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult CreateUser()
+        //{
+        //    return View();
+        //}
 
 
     }

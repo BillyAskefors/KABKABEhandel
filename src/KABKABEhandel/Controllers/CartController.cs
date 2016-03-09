@@ -23,10 +23,10 @@ namespace KABKABEhandel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(AddProductViewModel viewModel)
-        {
-            return View();
-        }
+        //public IActionResult Add(AddProductViewModel viewModel)
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult Remove()
@@ -34,11 +34,11 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Remove(RemoveProductViewModel viewModel)
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult Remove(RemoveProductViewModel viewModel)
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult Edit()
@@ -46,10 +46,10 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Edit(EditProductViewModel viewModel)
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult Edit(EditProductViewModel viewModel)
+        //{
+        //    return View();
+        //}
     }
 }
