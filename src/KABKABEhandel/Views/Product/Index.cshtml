@@ -5,9 +5,27 @@
 @model KABKABEhandel.ViewModels.ListProductViewModel[]
 
 <script>
-    function addToCart(id){
-        alert(id); //Skapa metod som lägger till produkten i varukorgen.
+    //javascript class
+    function Product (id, quantity) {
+        this.id = id;        
+        this.quantity = quantity
     }
+
+    //anropas när vi klickar på add
+    function addToCart(id, quantity){   
+        var quantity = $("#quantity option:selected").text();
+        var product = new Product(id, quantity);
+        //alert("Add To Cart Product ID: " + product.id + " With a Quantity of: " + product.quantity);          
+        var productInCart = [product.id + " " + product.quantity];
+        
+        for (index = 0; index < productInCart.length; index++) {
+            var text = productInCart[index];
+        }
+
+        alert(text);
+
+    }
+       
 </script>
 
 <form>
@@ -22,9 +40,27 @@
                     <h2>@item.Name</h2>
                     <h2>@item.Details</h2>
                     <h2>@item.ID</h2>
-                    
+                    <h2>@item.Price :-</h2>
+                    <div class="form-group">
+                        <label for="sel1">Select list:</label>
+                        <select class="form-control" id="quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+
                     <button type="button" id="buyBtn" onclick="addToCart(@item.ID)">Add to cart</button>
-                
+
+                    
+
 
             }
 

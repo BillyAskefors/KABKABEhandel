@@ -12,5 +12,6 @@ namespace KABKABEhandel.ViewModels
         public string Name { get; set; }
         public int ID { get; set; }
         public string Details { get; set; }
+        public double Price { get; set; }
     }
 }

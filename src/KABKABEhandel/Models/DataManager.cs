@@ -75,7 +75,7 @@ namespace KABKABEhandel.Models
         public ListProductViewModel[] GetLatestProducts()
         { 
             return db.GetLatestProducts()
-                .Select(product => new ListProductViewModel { ID = product.Id, Name = product.Name, Details = product.Description })
+                .Select(product => new ListProductViewModel { ID = product.Id, Name = product.Name, Details = product.Description, Price = product.Price})
                 .ToArray();
         }
 
