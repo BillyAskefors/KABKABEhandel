@@ -12,20 +12,25 @@
     }
 
     //anropas när vi klickar på add
-    function addToCart(id, quantity){   
-        var quantity = $("#quantity option:selected").text();
-        var product = new Product(id, quantity);
-        //alert("Add To Cart Product ID: " + product.id + " With a Quantity of: " + product.quantity);          
-        var productInCart = [product.id + " " + product.quantity];
+    function addToCart(id){   
+        var quantity = $("#quantity" + id).text();
+        var product = new Product(id, quantity);                
         
-        for (index = 0; index < productInCart.length; index++) {
-            var text = productInCart[index];
-        }
+        
+        alert("Added to your cart id: " + product.id + " Quantity: " + product.quantity);
+        //ajax anrop till vad?
+        //$.post("/Customers/GetCustomer", { "id": product.id, "quantity": product.quantity});
 
-        alert(text);
 
     }
-       
+
+    //när vi klickar på produkt text visas modal
+    function viewProductInfo(id){    
+        var myData = id;
+        $('#pInfo').val(myData);          
+        $('#myModal').modal('show'); 
+        
+    }
 </script>
 
 <form>
@@ -38,12 +43,12 @@
                         <img src="@item.ID" class="img-responsive" />
                     </div>
                     <h2>@item.Name</h2>
-                    <h2>@item.Details</h2>
+                    <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>
                     <h2>@item.ID</h2>
                     <h2>@item.Price :-</h2>
                     <div class="form-group">
                         <label for="sel1">Select list:</label>
-                        <select class="form-control" id="quantity">
+                        <select class="form-control" id="quantity\'@item.ID\''">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -57,9 +62,7 @@
                         </select>
                     </div>
 
-                    <button type="button" id="buyBtn" onclick="addToCart(@item.ID)">Add to cart</button>
-
-                    
+                    <button type="button" id="buyBtn" onclick="addToCart(@item.ID)">Add to cart</button>                   
 
 
             }
@@ -69,6 +72,39 @@
         </div>
     </div>
 </form>
+
+<div class="container">
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">                    
+                    <input type="text" name="pInfo" id="pInfo" value="" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
 @*<form>
         <div class="row">
             <div class="col-md-3">
