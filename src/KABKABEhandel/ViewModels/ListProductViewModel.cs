@@ -13,5 +13,6 @@ namespace KABKABEhandel.ViewModels
         public int ID { get; set; }
         public string Details { get; set; }
         public decimal Price { get; set; }
+        public double Vat { get; set; }
     }
 }
