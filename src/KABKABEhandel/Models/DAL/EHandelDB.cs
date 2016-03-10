@@ -96,7 +96,8 @@ namespace KABKABEhandel.Models.DAL
                 product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
                 product.Description = row["Description"].ToString();
                 product.Discount = Convert.ToDouble(row["Discount"].ToString());
-               
+                product.Discount = Convert.ToInt32(row["NrInStock"].ToString());
+
                 latestProducts.Add(product); 
 
             }
