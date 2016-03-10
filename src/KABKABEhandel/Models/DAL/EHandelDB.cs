@@ -67,9 +67,7 @@ namespace KABKABEhandel.Models.DAL
 
         private void SubmitOrder(Customer customer, Address deliveryAddress, List<Product> shoppingCart)
         {
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "spGetLatestProcuts";
-
+            
 
 
         }
@@ -95,7 +93,9 @@ namespace KABKABEhandel.Models.DAL
                 product.ImageURL = row["ImageUrl"].ToString();
                 product.Vat = Convert.ToDouble(row["Vat"].ToString());
                 product.Price = Convert.ToDouble(row["Price"].ToString());
-
+                product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
+                product.Description = row["Description"].ToString();
+                product.Discount = Convert.ToDouble(row["Discount"].ToString());
                 latestProducts.Add(product); 
 
             }
