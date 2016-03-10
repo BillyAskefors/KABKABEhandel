@@ -30,6 +30,12 @@ namespace KABKABEhandel.Models
             var product = new Product();
 
             product.Name = viewModel.Name;
+            product.Price = viewModel.Price;
+            product.IsActive = viewModel;
+
+            db.Products.Add(product);
+            db.SaveChanges();
+
 
             products.Add(product);
         }
