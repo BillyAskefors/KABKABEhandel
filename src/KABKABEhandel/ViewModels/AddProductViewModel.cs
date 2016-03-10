@@ -11,5 +11,16 @@ namespace KABKABEhandel.ViewModels
         [Display(Name = "Product name")]
         [Required(ErrorMessage = "Enter a product name")]
         public string Name { get; set; }
+
+        [Display(Name = "Product price")]
+        [Required(ErrorMessage = "Enter price of product")]
+        public decimal Price { get; set; }
+
+        // Add validator
+        public bool IsActive { get; set; }
+
+        //[Display(Name = "I accept terms and conditions")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "You gotta tick the box!")]
+        //public bool AcceptTerms { get; set; }
     }
 }

@@ -1,0 +1,34 @@
+﻿@using KABKABEhandel.ViewModels
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@model AddProductViewModel
+<html>
+<head>
+    <title>Add product</title>
+</head>
+<body>
+    <h1>Add product</h1>
+    <form asp-controller="product" asp-action="add">
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" placeholder="Name" />
+        <span asp-validation-for="Name"></span>
+        <br />
+        <br />
+        <label asp-for="Price">Number of doors</label><br />
+        <input asp-for="Price" placeholder="Price of product" />
+        <span asp-validation-for="Price"></span>
+        <br />
+        <br />
+        <label asp-for="IsActive">Visible for customer</label><br />
+        <input asp-for="IsActive" placeholder="Top speed" />
+        <span asp-validation-for="IsActive"></span>
+        <br />
+        <br />
+        @*<label asp-for="AcceptTerms">I accpet terms and conditions</label><br />
+        <input asp-for="AcceptTerms" type="checkbox" />
+        <span asp-validation-for="AcceptTerms"></span>*@
+        <br />
+        @*<input type="checkbox" name="terms" value="terms">I accpet terms and conditions<br />*@
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>
