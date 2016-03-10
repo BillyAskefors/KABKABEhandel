@@ -17,8 +17,6 @@ namespace KABKABEhandel.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            
-
             return View();
         }
 

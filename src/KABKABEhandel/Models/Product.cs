@@ -52,6 +52,8 @@ namespace KABKABEhandel.Models
         public bool IsActive { get; set; }
         public string ImageURL { get; set; }
         public double Vat { get; set; }
+
+        public int Quantity { get; set; }
         //public int NumInStock { get; set; }
         //public string Status { get; set; }
         //public string StockPos { get; set; }
