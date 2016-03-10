@@ -14,21 +14,21 @@
         <br />
         <br />
         <label asp-for="Price">Number of doors</label><br />
-        <input asp-for="Doors" placeholder="Number of doors" />
-        <span asp-validation-for="Doors"></span>
+        <input asp-for="Price" placeholder="Price of product" />
+        <span asp-validation-for="Price"></span>
         <br />
         <br />
-        <label asp-for="TopSpeed">Top speed</label><br />
-        <input asp-for="TopSpeed" placeholder="Top speed" />
-        <span asp-validation-for="TopSpeed"></span>
+        <label asp-for="IsActive">Visible for customer</label><br />
+        <input asp-for="IsActive" placeholder="Top speed" />
+        <span asp-validation-for="IsActive"></span>
         <br />
         <br />
-        <label asp-for="AcceptTerms">I accpet terms and conditions</label><br />
+        @*<label asp-for="AcceptTerms">I accpet terms and conditions</label><br />
         <input asp-for="AcceptTerms" type="checkbox" />
-        <span asp-validation-for="AcceptTerms"></span>
+        <span asp-validation-for="AcceptTerms"></span>*@
         <br />
         @*<input type="checkbox" name="terms" value="terms">I accpet terms and conditions<br />*@
-        <input type="submit" value="Create" />
+        <input type="submit" value="Add" />
     </form>
 </body>
 </html>

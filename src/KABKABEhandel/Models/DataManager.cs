@@ -31,10 +31,10 @@ namespace KABKABEhandel.Models
 
             product.Name = viewModel.Name;
             product.Price = viewModel.Price;
-            product.IsActive = viewModel;
+            product.IsActive = viewModel.IsActive;
 
-            db.Products.Add(product);
-            db.SaveChanges();
+            //db.AddProduct(product);
+            //db.SaveChanges();
 
 
             products.Add(product);
