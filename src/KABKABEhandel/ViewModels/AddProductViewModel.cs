@@ -11,5 +11,17 @@ namespace KABKABEhandel.ViewModels
         [Display(Name = "Product name")]
         [Required(ErrorMessage = "Enter a product name")]
         public string Name { get; set; }
+
+        [Display(Price = "Product price")]
+        [Required(ErrorMessage = "Enter number of doors - 3-5")]
+        public int Price { get; set; }
+
+        [Range(0, 300)]
+        [Required(ErrorMessage = "Enter maximum velocity")]
+        public int TopSpeed { get; set; }
+
+        [Display(Name = "I accept terms and conditions")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "You gotta tick the box!")]
+        public bool AcceptTerms { get; set; }
     }
 }
