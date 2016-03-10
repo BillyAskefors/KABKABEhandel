@@ -16,6 +16,24 @@ namespace KABKABEhandel.ViewModels
         [Required(ErrorMessage = "Enter price of product")]
         public decimal Price { get; set; }
 
+        [Display(Name = "Product Vat")]
+        public double Vat { get; set; }
+
+        [Display(Name = "Price discount")]
+        public double Discount { get; set; }
+
+        [Display(Name = "Product availability")]
+        [Required(ErrorMessage = "Enter product availability")]
+        public int NumberInStock { get; set; }
+
+        [Display(Name = "Product description")]
+        [Required(ErrorMessage = "Enter product description")]
+        public string Description { get; set; }
+
+        [Display(Name = "Product description")]
+        [Required(ErrorMessage = "Enter product description")]
+        public string ImageURL { get; set; }
+
         // Add validator
         public bool IsActive { get; set; }
 

@@ -28,6 +28,11 @@ namespace KABKABEhandel.Controllers
             return View(viewModels);
         }
 
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
         public IActionResult GetAllProducts()
         {
             //var dataManager = new DataManager();

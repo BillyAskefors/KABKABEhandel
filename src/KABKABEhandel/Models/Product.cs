@@ -9,16 +9,16 @@ namespace KABKABEhandel.Models
     {
         public Product(string name, decimal price, int numberInStock, int id, string description, double discount, bool isActive, string imageURL, double vat)
         {
+            Id = id;
             Name = name;
             Price = price;
+            Vat = vat;
+            Discount = discount;
             NumberInStock = numberInStock;
-            Id = id;
             Description = description;
             //Details = details;
-            Discount = discount;
-            IsActive = isActive;
             ImageURL = imageURL;
-            Vat = vat;
+            IsActive = isActive;
             
             //NumInStock = numInStock;
             //Status = status;
@@ -42,16 +42,16 @@ namespace KABKABEhandel.Models
         {
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public double Vat { get; set; }
+        public double Discount { get; set; }
         public int NumberInStock { get; set; }
-        public int Id { get; set; }
         public string Description { get; set; }
         //public string Details { get; set; }
-        public double Discount { get; set; }
-        public bool IsActive { get; set; }
         public string ImageURL { get; set; }
-        public double Vat { get; set; }
+        public bool IsActive { get; set; }
         //public int NumInStock { get; set; }
         //public string Status { get; set; }
         //public string StockPos { get; set; }
