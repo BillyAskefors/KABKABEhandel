@@ -4,14 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using KABKABEhandel.ViewModels;
+using KABKABEhandel.Models;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KABKABEhandel.Controllers
 {
+    
     public class CartController : Controller
     {
-        
+        List<Product> cartList = new List<Product>();
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -21,40 +24,23 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult AddToCart()
-        //{
-        //    return View();
-        //}
+        public IActionResult TemporaryCart(string product)
+        {
+            JObject jObject = JObject.Parse(product);
 
-        //[HttpPost]
-        //public IActionResult AddToCart(AddProductViewModel viewModel)
-        //{
-        //    return View();
-        //}
+            string id = jObject["id"].ToString();
+            string vat = jObject["vat"].ToString();
+            string price = jObject["price"].ToString();
+            string quantity = jObject["quantity"].ToString();
 
-        //[HttpGet]
-        //public IActionResult RemoveFromCart()
-        //{
-        //    return View();
-        //}
 
-        //[HttpPost]
-        //public IActionResult Remove(RemoveProductViewModel viewModel)
-        //{
-        //    return View();
-        //}
+            //cartList.Add(product);
+            //ta emot ajaxpost och lagra :) 
 
-        //[HttpGet]
-        //public IActionResult EditInCart()
-        //{
-        //    return View();
-        //}
+            //returnera error message eller lyckat message! 
+            return RedirectToAction(nameof(ProductController.Index));
+        }
 
-        //[HttpPost]
-        //public IActionResult Edit(EditProductViewModel viewModel)
-        //{
-        //    return View();
-        //}
+
     }
 }
