@@ -6,30 +6,46 @@
 
 <script>
     //javascript class
-    function Product (id, quantity) {
+    function Product (id, quantity, vat, price) {
         this.id = id;
-        this.quantity = quantity
+        this.quantity = quantity;
+        this.vat = vat;
+        this.price = price;
     }
 
-    //anropas när vi klickar på add
-    function addToCart(id){
+    
+    function addToCart(id){ //anropas när vi klickar på add
+
+        //Hämtar info
         var quantity = $("#quantity" + id + " option:selected").text();
+        var vat = $("#vat" + id).text();
+        var price = $("#price" + id).text();        
 
-        var product = new Product(id, quantity);
+        //Skickar in i javascripklassen
+        var product = new Product(id, quantity, vat, price);
 
 
-        alert("Added to your cart id: " + product.id + " Quantity: " + product.quantity);
+        alert("Added to your cart id: " + product.id + " Quantity: " + product.quantity + "Current Vat: " + product.vat + "Current Price: " + product.price);
         //ajax anrop till vad?
-        //$.post("/Customers/GetCustomer", { "id": product.id, "quantity": product.quantity});
+        $.post("/Cart/TemporaryCart", { "prodcut": JSON.stringify(product)});
 
 
     }
 
-    //när vi klickar på produkt text visas modal
-    function viewProductInfo(id){
+   
+    function viewProductInfo(id){  //när vi klickar på product info visas modal
         
+        //Hämtar aktuell info.
         var details = $("#details" + id).text();
-        $('#pInfo').val(details);
+        var vat = $("#vat" + id).text();
+        var price = $("#price" + id).text();
+        var name = $("#name" + id).text();
+        //Anpassar modal.
+        $('#detailsInfo').val(details);
+        $('#vatInfo').val(vat);
+        $('#priceInfo').val(price);
+        $('#nameInfo').val(name);
+        //Visar modal
         $('#myModal').modal('show');
 
     }
@@ -44,10 +60,11 @@
                 <div class="item">
                     <img src="@item.ID" class="img-responsive" />
                 </div>
-                    <h2>@item.Name</h2>
-                    <h2>@item.Price :-</h2>                    
-                    <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>
+                    <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
+                    <h2 id="@string.Format("price{0}",item.ID)">@item.Price :-</h2>                    
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
+                    <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>
+                    <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>
                     <div class="form-group">
                         <label for="sel1">Select list:</label>
                         <select class="form-control" id="@string.Format("quantity{0}",item.ID)">
@@ -101,7 +118,10 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="pInfo" id="pInfo" value="" />
+                    <input type="text" name="nameInfo" id="nameInfo" value="" />
+                    <input type="text" name="priceInfo" id="priceInfo" value="" />
+                    <input type="text" name="vatInfo" id="vatInfo" value="" />
+                    <input type="text" name="detailsInfo" id="detailsInfo" value="" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
