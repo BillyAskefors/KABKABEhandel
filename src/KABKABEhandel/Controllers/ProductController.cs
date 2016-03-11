@@ -51,7 +51,21 @@ namespace KABKABEhandel.Controllers
             var model = dataManager.ListProducts();
             return View(model);
         }
-        
+
+        public ActionResult SearchProduct(string searchString)
+        {
+            DataManager dataManager = new DataManager(new EHandelDB());
+            var products = from m in dataManager.ListProducts()
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name.Contains(searchString));
+            }
+
+            return View(products);
+        }
+
         //public IActionResult GetAllDetails()
         //{
         //    var dataManager = new DataManager();

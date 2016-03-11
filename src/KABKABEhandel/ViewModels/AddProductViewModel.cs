@@ -34,7 +34,7 @@ namespace KABKABEhandel.ViewModels
         //[Required(ErrorMessage = "Enter product description")]
         public string Description { get; set; }
 
-        [Display(Name = "Product description")]
+        [Display(Name = "Image URL")]
         //[Required(ErrorMessage = "Enter product URL")]
         public string ImageURL { get; set; }
 
