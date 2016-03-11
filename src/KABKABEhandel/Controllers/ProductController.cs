@@ -33,6 +33,18 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
+        [HttpPost] //om en post fungerar ska den sluta med redirect
+        public IActionResult AddProduct(AddProductViewModel product)
+        {
+            if (!ModelState.IsValid)
+                return View(product);
+
+            var dataManager = new DataManager(new EHandelDB());
+            dataManager.AddProduct(product);
+
+            return RedirectToAction(nameof(ProductController.AddProduct));
+        }
+
         public IActionResult GetAllProducts()
         {
             //var dataManager = new DataManager();
