@@ -21,11 +21,25 @@ namespace KABKABEhandel.Controllers
         }
 
         // GET: /Product/Index
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            var viewModels = dataManager.GetLatestProducts(); 
-       
-            return View(viewModels);
+            ListProductViewModel[] viewModels;
+            int x = Convert.ToInt32(id);
+
+            if (x == 0)
+            {
+                viewModels = dataManager.GetLatestProducts();
+            }
+            else
+            {
+                
+                var tempViewModels = dataManager.GetProductsFromCategory(x);
+                viewModels = tempViewModels                    
+                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat})
+                    .ToArray();
+            }
+
+                return View(viewModels);
         }
 
         public IActionResult AddProduct()

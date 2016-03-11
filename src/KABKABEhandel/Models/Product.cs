@@ -19,6 +19,7 @@ namespace KABKABEhandel.Models
             //Details = details;
             ImageURL = imageURL;
             IsActive = isActive;
+           
             
             //NumInStock = numInStock;
             //Status = status;
@@ -52,6 +53,7 @@ namespace KABKABEhandel.Models
         //public string Details { get; set; }
         public string ImageURL { get; set; }
         public bool IsActive { get; set; }
+        
 
         public int Quantity { get; set; }
         //public int NumInStock { get; set; }

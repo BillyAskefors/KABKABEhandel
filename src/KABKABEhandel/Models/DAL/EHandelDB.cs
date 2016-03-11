@@ -163,7 +163,7 @@ namespace KABKABEhandel.Models.DAL
                 product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
                 product.Description = row["Description"].ToString();
                 product.Discount = Convert.ToDouble(row["Discount"].ToString());
-                product.Discount = Convert.ToInt32(row["NrInStock"].ToString());
+                product.NumberInStock = Convert.ToInt32(row["NrInStock"].ToString());
 
                 latestProducts.Add(product); 
 
@@ -172,6 +172,42 @@ namespace KABKABEhandel.Models.DAL
             return latestProducts; 
         }
 
+        public List<Product> GetProductsFromCategoryID(int id)
+        {
+
+            string msg;
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;       
+
+            cmd.Parameters.Add(new SqlParameter("@CategoryId", SqlDbType.Int)).Value = id;
+            cmd.Parameters.Add(new SqlParameter("@IsActive", SqlDbType.Bit)).Value = 1;
+
+            cmd.CommandText = "spGetAllProductsFromCategoryID";
+
+            DataSet dataSet = ExecuteQuery(cmd, "ProductsFromCategory", out msg);
+
+            List<Product> latestProducts = new List<Product>();
+
+            foreach (DataRow row in dataSet.Tables["ProductsFromCategory"].Rows)
+            {
+
+                Product product = new Product();
+                product.Id = Convert.ToInt32(row["Id"].ToString());
+                product.Name = row["Name"].ToString();
+                product.ImageURL = row["ImageUrl"].ToString();
+                product.Vat = Convert.ToDouble(row["Vat"].ToString());
+                product.Price = Convert.ToDecimal(row["Price"].ToString());
+                product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
+                product.Description = row["Description"].ToString();
+                product.Discount = Convert.ToDouble(row["Discount"].ToString());
+                product.NumberInStock = Convert.ToInt32(row["NrInStock"].ToString());
+
+                latestProducts.Add(product);
+
+            }
+
+            return latestProducts;
+        }
 
 
 

@@ -33,7 +33,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+                        <li><a asp-controller="Product" asp-action="Index" asp-route-id="0">Products</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
                     </ul>
@@ -41,11 +41,14 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
-            <a asp-controller="Cart" asp-action="Index">Antal produkter i varukorgen: <span class="badge" id="shopcartQuantity"></span></a>                  
+        <div class="container body-content">                            
+                <a asp-controller="Cart" asp-action="Index">Antal produkter i varukorgen: <span class="badge" id="shopcartQuantity"></span></a>
             @RenderBody()
+
+            
             <hr />
             <footer>
+              
                 <p>&copy; 2016 - Kontorsprylar AB</p>
             </footer>
         </div>
