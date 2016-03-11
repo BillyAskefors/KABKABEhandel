@@ -226,7 +226,8 @@ namespace KABKABEhandel.Models.DAL
                 product.Name = row["Name"].ToString();
                 product.ImageURL = row["ImageUrl"].ToString();
                 product.Vat = Convert.ToDouble(row["Vat"].ToString());
-                product.Price = Convert.ToDecimal(row["Price"].ToString());
+                //product.Price = Convert.ToDecimal(row["Price"].ToString());
+                product.Price = Decimal.Round(Convert.ToDecimal(row["Price"].ToString()), 2, MidpointRounding.AwayFromZero); 
                 product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
                 product.Description = row["Description"].ToString();
                 product.Discount = Convert.ToDouble(row["Discount"].ToString());
