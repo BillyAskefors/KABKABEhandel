@@ -14,5 +14,6 @@ namespace KABKABEhandel.ViewModels
         public string Details { get; set; }
         public decimal Price { get; set; }
         public double Vat { get; set; }
+        public string ImageURL { get; set; }
     }
 }

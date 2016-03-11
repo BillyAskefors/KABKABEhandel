@@ -7,12 +7,13 @@
 <script>
   
     //javascript class
-    function Product (id, quantity, vat, price, name) {
+    function Product (id, quantity, vat, price, name, imageURL) {
         this.id = id;
         this.quantity = quantity;
         this.vat = vat;
         this.price = price;
-        this.name = name; 
+        this.name = name;
+        this.imageURL = imageURL;
     }
 
     
@@ -22,7 +23,7 @@
         var quantity = $("#quantity" + id + " option:selected").text();
         var vat = $("#vat" + id).text();
         var price = $("#price" + id).text();        
-        var name = $("#name" + id).text(); 
+        var name = $("#name" + id).text();
         //Skickar in i javascripklassen
         var product = new Product(id, quantity, vat, price, name);
 
@@ -55,10 +56,10 @@
 
             @foreach (var item in Model)
             {
-                <div class="item">
-                    <img src="@item.ID" class="img-responsive" />
-                </div>
                     <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
+                    <div class="item">
+                        <img src="@item.ImageURL" alt="Picture of @item.Name" class="img-responsive"/>
+                    </div>
                     <h5 id="@string.Format("price{0}",item.ID)">@item.Price :-</h5>                    
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
                     <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>
@@ -138,23 +139,3 @@
 
 </div>
 
-
-
-
-
-
-
-@*<form>
-        <div class="row">
-            <div class="col-md-3">
-
-                <img src="~/images/penna.jpg" class="img-responsive" />
-                <p>Name</p>
-                <p>Description</p>
-                <p>Price</p>
-                <button type="button" id="buyBtn">Add to cart</button>
-
-            </div>
-        </div>
-
-    </form>*@
