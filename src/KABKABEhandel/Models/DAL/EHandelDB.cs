@@ -280,6 +280,44 @@ namespace KABKABEhandel.Models.DAL
 
 
 
+        //Anropar Stored Procedure och får order history utifrån inloggad Email.
+        public List<OrderHistory> GetOrderHistoryFromEmail(string email)
+        {
+
+            string msg;
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 320)).Value = email;
+            
+
+            cmd.CommandText = "spGetOrderHistoriesFromMailAddress";
+
+            DataSet dataSet = ExecuteQuery(cmd, "OrderHistories", out msg);
+
+            List<OrderHistory> orderHistoryList = new List<OrderHistory>();
+
+            foreach (DataRow row in dataSet.Tables["OrderHistories"].Rows)
+            {
+
+                OrderHistory order = new OrderHistory();
+                order.CurrentCustomerName = row["CurrentCustomerName"].ToString();
+                order.CustomerId = Convert.ToInt32(row["CustomerId"].ToString());
+                order.CurrentStatus = row["CurrentStatus"].ToString();
+                order.DateAndTime = Convert.ToDateTime(row["DateAndTime"].ToString());
+                order.DeliveryAddress = row["DeliveryAddress"].ToString();
+                order.OrderId = Convert.ToInt32(row["OrderId"].ToString());                
+
+                orderHistoryList.Add(order);
+
+            }
+
+            return orderHistoryList;
+        }
+
+
+
+
 
 
 
