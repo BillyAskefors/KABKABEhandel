@@ -4,7 +4,8 @@
 @{
     ViewData["Title"] = "Create Customer";
 }
-<form asp-controller="Customers" asp-action="CreateCustomer" method="post" class="form-horizontal" role="form">
+
+<form id="submit-order" method="post" class="form-horizontal" role="form">
     <hr />
     <p>@ViewBag.msg<p>
         <div class="form-group">
@@ -77,3 +78,33 @@
             </div>
         </div>
 </form>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#submit-order").submit(function (e) {
+
+            e.preventDefault();
+
+            if ($(this).valid()) {
+                var orderDetails = [];
+                for (var i in localStorage) {
+
+                    if (i.indexOf("product-item-") > -1) {
+                        var item = JSON.parse(localStorage[i]);
+                        orderDetails.push(item);
+                    }
+                }
+                alert(orderDetails.length);
+
+                $.post("create", { order: orderDetails },
+                function (data, status) {
+                     alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+
+        });
+    });
+
+</script>

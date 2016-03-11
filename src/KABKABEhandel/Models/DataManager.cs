@@ -85,6 +85,11 @@ namespace KABKABEhandel.Models
                 .ToArray();
         }
 
+        public void SubmitOrder()
+        {
+             
+        }
+
         //public string ListDetails(int id)
         //{
         //    return products

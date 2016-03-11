@@ -8,11 +8,11 @@
   
     //javascript class
     function Product (id, quantity, vat, price, name) {
-        this.id = id;
-        this.quantity = quantity;
-        this.vat = vat;
-        this.price = price;
-        this.name = name; 
+        this.Id = id;
+        this.Quantity = quantity;
+        this.Vat = vat;
+        this.Price = price;
+        this.Name = name; 
     }
 
     
@@ -26,7 +26,7 @@
         //Skickar in i javascripklassen
         var product = new Product(id, quantity, vat, price, name);
 
-        localStorage.setItem("product-item-" + product.id, JSON.stringify(product));
+        localStorage.setItem("product-item-" + product.Id, JSON.stringify(product));
 
         $("#shopcartQuantity").text(localStorage.length); 
     }
@@ -59,7 +59,7 @@
                     <img src="@item.ID" class="img-responsive" />
                 </div>
                     <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
-                    <h2 id="@string.Format("price{0}",item.ID)">@item.Price :-</h2>                    
+                    <h2 id="@string.Format("price{0}",item.ID)">@item.Price</h2>                    
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
                     <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>
                     <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>

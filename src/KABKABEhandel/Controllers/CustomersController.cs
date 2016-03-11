@@ -20,7 +20,7 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
-        
+
 
         //public IActionResult Info()
         //{
@@ -44,21 +44,18 @@ namespace KABKABEhandel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateCustomerViewModel viewModel)
+        public IActionResult Create( List<OrderDetailViewModel> order)
         {
-            if (!ModelState.IsValid)
-            {
-               
-
-                return View(viewModel);
-            }
-
-            //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
-            //skicka in i databasen.
-          
-            return RedirectToAction(nameof(HomeController.Index));
-            
+       
+            return View();
         }
 
-    }
+        //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
+        //skicka in i databasen.
+
+        // return RedirectToAction(nameof(HomeController.Index));
+
+    
+
+}
 }
