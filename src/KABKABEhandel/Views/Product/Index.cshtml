@@ -40,10 +40,10 @@
         var price = $("#price" + id).text();
         var name = $("#name" + id).text();
         //Anpassar modal.
-        $('#detailsInfo').val(details);
-        $('#vatInfo').val(vat);
-        $('#priceInfo').val(price);
-        $('#nameInfo').val(name);
+        $('#detailsInfo').text(details);
+        $('#vatInfo').text(vat);
+        $('#priceInfo').text(price);
+        $('#nameInfo').text(name);
         //Visar modal
         $('#myModal').modal('show');
 
@@ -59,12 +59,12 @@
                     <img src="@item.ID" class="img-responsive" />
                 </div>
                     <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
-                    <h2 id="@string.Format("price{0}",item.ID)">@item.Price :-</h2>                    
+                    <h5 id="@string.Format("price{0}",item.ID)">@item.Price :-</h5>                    
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
                     <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>
-                    <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>
+                    <h5 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">View details</h5>
                     <div class="form-group">
-                        <label for="sel1">Select list:</label>
+                        <label for="sel1">Quantity:</label>
                         <select class="form-control" id="@string.Format("quantity{0}",item.ID)">
                             <option>1</option>
 
@@ -113,13 +113,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"></h4>
+                    <h4 class="modal-title" id="nameInfo"></h4>
                 </div>
-                <div class="modal-body">
-                    <input type="text" name="nameInfo" id="nameInfo" value="" />
-                    <input type="text" name="priceInfo" id="priceInfo" value="" />
-                    <input type="text" name="vatInfo" id="vatInfo" value="" />
-                    <input type="text" name="detailsInfo" id="detailsInfo" value="" />
+                <div class="modal-body">   
+                     <div class="panel-group">                     
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Details</div>
+                            <div class="panel-body" id="detailsInfo"></div>
+                        </div>
+                         <div class="panel panel-info">
+                             <div class="panel-heading">Price</div>
+                             <div class="panel-body" id="priceInfo"></div>
+                         </div>                                              
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - Kontorsprylar AB</title>
+
       
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,16 +33,16 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Product" asp-action="Index">Products</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-controller="Cart" asp-action="Index">View Cart</a></li>
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </div>
         <div class="container body-content">
-            <p>Antal produkter i varukorgen:<span id="shopcartQuantity"></span></p>
+            <a asp-controller="Cart" asp-action="Index">Antal produkter i varukorgen: <span class="badge" id="shopcartQuantity"></span></a>                  
             @RenderBody()
             <hr />
             <footer>
