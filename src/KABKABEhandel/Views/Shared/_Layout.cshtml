@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - Kontorsprylar AB</title>
-
+      
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
@@ -41,6 +41,7 @@
             </div>
         </div>
         <div class="container body-content">
+            <p>Antal produkter i varukorgen:<span id="shopcartQuantity"></span></p>
             @RenderBody()
             <hr />
             <footer>
@@ -66,5 +67,29 @@
         </environment>
 
         @RenderSection("scripts", required: false)
+        <script>
+            $(document).ready(function () {
+
+                var productCount = 0
+                
+               
+                $("#shopcartQuantity").text(" " + ProductsInCart() + " st");
+            });
+
+            function ProductsInCart()
+            {
+                var productCount = 0
+
+                for (var i in localStorage) {
+
+                    if (i.indexOf("product-item-") > -1) {
+                        productCount++;
+                    }
+                }
+
+                return productCount;
+
+             }
+        </script>
     </body>
 </html>

@@ -5,12 +5,14 @@
 @model KABKABEhandel.ViewModels.ListProductViewModel[]
 
 <script>
+  
     //javascript class
-    function Product (id, quantity, vat, price) {
+    function Product (id, quantity, vat, price, name) {
         this.id = id;
         this.quantity = quantity;
         this.vat = vat;
         this.price = price;
+        this.name = name; 
     }
 
     
@@ -20,16 +22,13 @@
         var quantity = $("#quantity" + id + " option:selected").text();
         var vat = $("#vat" + id).text();
         var price = $("#price" + id).text();        
-
+        var name = $("#name" + id).text(); 
         //Skickar in i javascripklassen
-        var product = new Product(id, quantity, vat, price);
+        var product = new Product(id, quantity, vat, price, name);
 
+        localStorage.setItem("product-item-" + product.id, JSON.stringify(product));
 
-        alert("Added to your cart id: " + product.id + " Quantity: " + product.quantity + "Current Vat: " + product.vat + "Current Price: " + product.price);
-        //ajax anrop till vad?
-        $.post("/Cart/TemporaryCart", { "prodcut": JSON.stringify(product)});
-
-
+        $("#shopcartQuantity").text(localStorage.length); 
     }
 
    
@@ -50,7 +49,6 @@
 
     }
 </script>
-
 <form>
     <div class="row">
         <div class="col-md-3">
