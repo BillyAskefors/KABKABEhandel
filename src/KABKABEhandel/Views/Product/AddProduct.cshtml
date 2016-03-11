@@ -8,6 +8,11 @@
 <body>
     <h1>Add product</h1>
     <form asp-controller="product" asp-action="add">
+        <label asp-for="CategoryId"></label><br />
+        <input asp-for="CategoryId" placeholder="CategoryId" />
+        <span asp-validation-for="CategoryId"></span>
+        <br />
+        <br />
         <label asp-for="Name"></label><br />
         <input asp-for="Name" placeholder="Name" />
         <span asp-validation-for="Name"></span>
