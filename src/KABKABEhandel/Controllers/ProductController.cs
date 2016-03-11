@@ -34,7 +34,7 @@ namespace KABKABEhandel.Controllers
             {                
                 var tempViewModels = dataManager.GetProductsFromCategory(x);
                 viewModels = tempViewModels                    
-                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat})
+                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat, ImageURL = product.ImageURL})
                     .ToArray();
             }
 
@@ -64,7 +64,21 @@ namespace KABKABEhandel.Controllers
             var model = dataManager.ListProducts();
             return View(model);
         }
-        
+
+        public ActionResult SearchProduct(string searchString)
+        {
+            DataManager dataManager = new DataManager(new EHandelDB());
+            var products = from m in dataManager.ListProducts()
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name.Contains(searchString));
+            }
+
+            return View(products);
+        }
+
         //public IActionResult GetAllDetails()
         //{
         //    var dataManager = new DataManager();
