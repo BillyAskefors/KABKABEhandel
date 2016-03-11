@@ -7,12 +7,13 @@
 <script>
   
     //javascript class
-    function Product (id, quantity, vat, price, name) {
+    function Product (id, quantity, vat, price, name, imageURL) {
         this.id = id;
         this.quantity = quantity;
         this.vat = vat;
         this.price = price;
-        this.name = name; 
+        this.name = name;
+        this.imageURL = imageURL;
     }
 
     
@@ -55,10 +56,10 @@
             
             @foreach (var item in Model)
             {
-                <div class="item">
-                    <img src="@item.ID" class="img-responsive" />
-                </div>
                     <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
+                    <div class="item">
+                        <img src="@item.ImageURL" class="img-responsive" />
+                    </div>
                     <h5 id="@string.Format("price{0}",item.ID)">@item.Price</h5>                 
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
                     <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>

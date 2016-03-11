@@ -35,7 +35,7 @@ namespace KABKABEhandel.Controllers
                 
                 var tempViewModels = dataManager.GetProductsFromCategory(x);
                 viewModels = tempViewModels                    
-                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat})
+                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat, ImageURL = product.ImageURL})
                     .ToArray();
             }
 
