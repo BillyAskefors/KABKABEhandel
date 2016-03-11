@@ -14,8 +14,6 @@ namespace KABKABEhandel.Controllers
     
     public class CartController : Controller
     {
-        List<Product> cartList = new List<Product>();
-        // GET: /<controller>/
         public IActionResult Index()
         {
             //Kan här lägga in en check om man är inloggad. Om inte så skickas man till login page. 
@@ -24,23 +22,7 @@ namespace KABKABEhandel.Controllers
             return View();
         }
 
-        public IActionResult TemporaryCart(string product)
-        {
-            JObject jObject = JObject.Parse(product);
-
-            string id = jObject["id"].ToString();
-            string vat = jObject["vat"].ToString();
-            string price = jObject["price"].ToString();
-            string quantity = jObject["quantity"].ToString();
-
-
-            //cartList.Add(product);
-            //ta emot ajaxpost och lagra :) 
-
-            //returnera error message eller lyckat message! 
-            return RedirectToAction(nameof(ProductController.Index));
-        }
-
+      
 
     }
 }

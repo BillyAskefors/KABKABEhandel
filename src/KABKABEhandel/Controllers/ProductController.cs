@@ -21,11 +21,25 @@ namespace KABKABEhandel.Controllers
         }
 
         // GET: /Product/Index
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            var viewModels = dataManager.GetLatestProducts(); 
-       
-            return View(viewModels);
+            ListProductViewModel[] viewModels;
+            int x = Convert.ToInt32(id);
+
+            if (x == 0)
+            {
+                viewModels = dataManager.GetLatestProducts();
+            }
+            else
+            {
+                
+                var tempViewModels = dataManager.GetProductsFromCategory(x);
+                viewModels = tempViewModels                    
+                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat})
+                    .ToArray();
+            }
+
+                return View(viewModels);
         }
 
         public IActionResult AddProduct()
@@ -51,7 +65,21 @@ namespace KABKABEhandel.Controllers
             var model = dataManager.ListProducts();
             return View(model);
         }
-        
+
+        public ActionResult SearchProduct(string searchString)
+        {
+            DataManager dataManager = new DataManager(new EHandelDB());
+            var products = from m in dataManager.ListProducts()
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name.Contains(searchString));
+            }
+
+            return View(products);
+        }
+
         //public IActionResult GetAllDetails()
         //{
         //    var dataManager = new DataManager();

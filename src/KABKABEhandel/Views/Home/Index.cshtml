@@ -45,27 +45,35 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>Pencil of the day</h2>
+        <a asp-controller="Product" asp-action="Index" asp-route-id="1">
             <div class="item">
+        <h4>Pencils</h4>
                 <img src="~/images/penna.jpg" alt="Penna" class="img-responsive" />
             </div>
+        </a> 
     </div>
     <div class="col-md-3">
-        <h2>Printer of the day</h2>
-        <div class="item">
-            <img src="~/images/skrivare.jpg" alt="Skrivare" class="img-responsive" />
+        <a asp-controller="Product" asp-action="Index" asp-route-id="2">
+            <div class="item">
+                <h4>Printers</h4>
+                <img src="~/images/skrivare.jpg" alt="Skrivare" class="img-responsive" />
         </div>
+        </a>            
     </div>
     <div class="col-md-3">
-        <h2>Paper of the day</h2>
-        <div class="item">
-            <img src="~/images/papper.png" alt="Papper" class="img-responsive" />
+        <a asp-controller="Product" asp-action="Index" asp-route-id="3">
+            <div class="item">
+                <h4>Papers</h4>
+                <img src="~/images/papper.png" alt="Papper" class="img-responsive" />
         </div>
+        </a>            
     </div>
     <div class="col-md-3">
-        <h2>Stapler of the day</h2>
-        <div class="item">
-            <img src="~/images/haftapparat.jpg" alt="Haftapparat" class="img-responsive" />
-        </div>
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="4">
+            <div class="item">
+                <h4>Staplers</h4>
+                        <img src="~/images/haftapparat.jpg" alt="Haftapparat" class="img-responsive" />
+</div>
+                    </a>
     </div>
 </div>
