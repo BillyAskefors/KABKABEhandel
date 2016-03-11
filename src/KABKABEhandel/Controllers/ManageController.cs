@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using KABKABEhandel.Models;
 using KABKABEhandel.Services;
 using KABKABEhandel.ViewModels.Manage;
+using KABKABEhandel.ViewModels;
+using KABKABEhandel.Models.DAL;
 
 namespace KABKABEhandel.Controllers
 {
@@ -314,6 +316,14 @@ namespace KABKABEhandel.Controllers
             var result = await _userManager.AddLoginAsync(user, info);
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
+        }
+
+        public IActionResult OrderHistory()
+        {
+            var dataManager = new DataManager(new EHandelDB());
+            var viewModel = dataManager.GetOrderHistory(User.Identity.Name);
+            //var viewModel = dataManager.GetOrderHistory("aa@a.aa"); <----- Använd denna för test
+            return View(viewModel);
         }
 
         #region Helpers

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Order History";
+}
+
+@model KABKABEhandel.ViewModels.ListOrderHistoryViewModel[]
+
+
+<div class="container">
+    <h3>Order History</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>                
+                <th>Delivery Address</th>
+                <th>Current Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.DeliveryAddress</td>
+                <td>@item.CurrentStatus</td>
+                <td>@item.DateAndTime</td>
+            </tr>
+            }            
+        </tbody>
+    </table>
+</div>

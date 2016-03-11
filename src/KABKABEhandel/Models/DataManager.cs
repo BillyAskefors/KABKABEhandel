@@ -92,6 +92,13 @@ namespace KABKABEhandel.Models
                 .ToArray();
         }
 
+        public ListOrderHistoryViewModel[] GetOrderHistory(string email)
+        {
+
+            return db.GetOrderHistoryFromEmail(email)
+                .Select(order => new ListOrderHistoryViewModel { OrderId = order.OrderId, CurrentStatus = order.CurrentStatus, DateAndTime = order.DateAndTime, DeliveryAddress = order.DeliveryAddress })
+                .ToArray();
+        }
 
 
         //public string ListDetails(int id)
