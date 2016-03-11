@@ -45,6 +45,36 @@ namespace KABKABEhandel.Models.DAL
 
         }
 
+        private int AddProduct(Product newProduct, out string msg)
+        {
+            int newProductId;
+            cmd = new SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "spAddProduct";
+            cmd.Parameters.Add(new SqlParameter("@CategoryID", SqlDbType.Int)).Value = newProduct.CategoryId;
+            cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 30)).Value = newProduct.Name;
+            cmd.Parameters.Add(new SqlParameter("@Price", SqlDbType.Money)).Value = newProduct.Price;
+            cmd.Parameters.Add(new SqlParameter("@Description", SqlDbType.NVarChar, 800)).Value = newProduct.Description;
+            cmd.Parameters.Add(new SqlParameter("@IsActive", SqlDbType.Bit)).Value = newProduct.IsActive;
+            cmd.Parameters.Add(new SqlParameter("@Discount", SqlDbType.Float)).Value = newProduct.Discount;
+            cmd.Parameters.Add(new SqlParameter("@ImageURL", SqlDbType.NVarChar, 320)).Value = newProduct.ImageURL;
+            cmd.Parameters.Add(new SqlParameter("@Vat", SqlDbType.Float)).Value = newProduct.Discount;
+
+
+            SqlParameter outputParam = cmd.Parameters.Add("@new_id", SqlDbType.Int);
+            outputParam.Direction = ParameterDirection.Output;
+
+            int affectedRows = ExcecuteNonQuery(cmd, out msg);
+
+            newProductId = (int)outputParam.Value;
+
+            return newProductId;
+
+        }
+
+
+
+
         private int AddCustomer(Customer newCustomer, out string msg)
         {
             int newCustomerId;

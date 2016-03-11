@@ -8,6 +8,10 @@ namespace KABKABEhandel.ViewModels
 {
     public class AddProductViewModel
     {
+        [Display(Name = "Category Id")]
+        [Required(ErrorMessage = "Enter a category id")]
+        public int CategoryId { get; set; }
+
         [Display(Name = "Product name")]
         [Required(ErrorMessage = "Enter a product name")]
         public string Name { get; set; }
@@ -23,15 +27,15 @@ namespace KABKABEhandel.ViewModels
         public double Discount { get; set; }
 
         [Display(Name = "Product availability")]
-        [Required(ErrorMessage = "Enter product availability")]
+        //[Required(ErrorMessage = "Enter product availability")]
         public int NumberInStock { get; set; }
 
         [Display(Name = "Product description")]
-        [Required(ErrorMessage = "Enter product description")]
+        //[Required(ErrorMessage = "Enter product description")]
         public string Description { get; set; }
 
         [Display(Name = "Product description")]
-        [Required(ErrorMessage = "Enter product description")]
+        //[Required(ErrorMessage = "Enter product URL")]
         public string ImageURL { get; set; }
 
         // Add validator
