@@ -240,6 +240,44 @@ namespace KABKABEhandel.Models.DAL
             return latestProducts;
         }
 
+        public List<Product> FindProduct(string searchTerm)
+        {
+
+            string msg;
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 30)).Value = searchTerm;
+            cmd.Parameters.Add(new SqlParameter("@IsActive", SqlDbType.Bit)).Value = 1;
+
+            cmd.CommandText = "spFindProduct";
+
+            DataSet dataSet = ExecuteQuery(cmd, "FoundProduct", out msg);
+
+            List<Product> searchResults = new List<Product>();
+
+            foreach (DataRow row in dataSet.Tables["FoundProduct"].Rows)
+            {
+
+                Product product = new Product();
+                product.Id = Convert.ToInt32(row["Id"].ToString());
+                product.Name = row["Name"].ToString();
+                product.ImageURL = row["ImageUrl"].ToString();
+                product.Vat = Convert.ToDouble(row["Vat"].ToString());
+                //product.Price = Convert.ToDecimal(row["Price"].ToString());
+                product.Price = Decimal.Round(Convert.ToDecimal(row["Price"].ToString()), 2, MidpointRounding.AwayFromZero);
+                product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
+                product.Description = row["Description"].ToString();
+                product.Discount = Convert.ToDouble(row["Discount"].ToString());
+                product.NumberInStock = Convert.ToInt32(row["NrInStock"].ToString());
+
+                searchResults.Add(product);
+
+            }
+
+            return searchResults;
+        }
+
 
 
 

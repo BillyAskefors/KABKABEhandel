@@ -66,18 +66,20 @@ namespace KABKABEhandel.Controllers
             return View(model);
         }
 
-        public ActionResult SearchProduct(string searchString)
+        [HttpPost]
+        public ActionResult SearchProduct(string id)
         {
-            DataManager dataManager = new DataManager(new EHandelDB());
-            var products = from m in dataManager.ListProducts()
-                         select m;
+            //DataManager dataManager = new DataManager(new EHandelDB());
+            //var products = from m in dataManager.ListProducts()
+            //               select m;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(p => p.Name.Contains(searchString));
-            }
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = products.Where(p => p.Name.Contains(searchString));
+            //}
 
-            return View(products);
+            EHandelDB myEHDB = new EHandelDB();
+            return View(myEHDB.FindProduct(id));
         }
 
         //public IActionResult GetAllDetails()
