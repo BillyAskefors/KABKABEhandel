@@ -21,16 +21,41 @@ namespace KABKABEhandel.Controllers
         }
 
         // GET: /Product/Index
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            var viewModels = dataManager.GetLatestProducts(); 
-       
-            return View(viewModels);
+            int x = Convert.ToInt32(id);
+            ListProductViewModel[] viewModels;
+
+            if (x == 0)
+            {
+                viewModels = dataManager.GetLatestProducts();
+            }
+            else
+            {                
+                var tempViewModels = dataManager.GetProductsFromCategory(x);
+                viewModels = tempViewModels                    
+                    .Select(product => new ListProductViewModel { ID = product.ID, Name = product.Name, Details = product.Details, Price = product.Price, Vat = product.Vat, ImageURL = product.ImageURL})
+                    .ToArray();
+            }
+
+                return View(viewModels);
         }
 
         public IActionResult AddProduct()
         {
             return View();
+        }
+
+        [HttpPost] //om en post fungerar ska den sluta med redirect
+        public IActionResult AddProduct(AddProductViewModel product)
+        {
+            if (!ModelState.IsValid)
+                return View(product);
+
+            var dataManager = new DataManager(new EHandelDB());
+            dataManager.AddProduct(product);
+
+            return RedirectToAction(nameof(ProductController.AddProduct));
         }
 
         public IActionResult GetAllProducts()
@@ -39,7 +64,23 @@ namespace KABKABEhandel.Controllers
             var model = dataManager.ListProducts();
             return View(model);
         }
-        
+
+        [HttpPost]
+        public ActionResult SearchProduct(string id)
+        {
+            //DataManager dataManager = new DataManager(new EHandelDB());
+            //var products = from m in dataManager.ListProducts()
+            //               select m;
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = products.Where(p => p.Name.Contains(searchString));
+            //}
+
+            EHandelDB myEHDB = new EHandelDB();
+            return View(myEHDB.FindProduct(id));
+        }
+
         //public IActionResult GetAllDetails()
         //{
         //    var dataManager = new DataManager();

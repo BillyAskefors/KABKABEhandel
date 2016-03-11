@@ -7,8 +7,9 @@ namespace KABKABEhandel.Models
 {
     public class Product
     {
-        public Product(string name, decimal price, int numberInStock, int id, string description, double discount, bool isActive, string imageURL, double vat)
+        public Product(int categoryId, string name, decimal price, int numberInStock, int id, string description, double discount, bool isActive, string imageURL, double vat)
         {
+            CategoryId = categoryId;
             Id = id;
             Name = name;
             Price = price;
@@ -19,6 +20,7 @@ namespace KABKABEhandel.Models
             //Details = details;
             ImageURL = imageURL;
             IsActive = isActive;
+           
             
             //NumInStock = numInStock;
             //Status = status;
@@ -43,6 +45,7 @@ namespace KABKABEhandel.Models
         }
 
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public double Vat { get; set; }
@@ -52,6 +55,7 @@ namespace KABKABEhandel.Models
         //public string Details { get; set; }
         public string ImageURL { get; set; }
         public bool IsActive { get; set; }
+        
 
         public int Quantity { get; set; }
         //public int NumInStock { get; set; }
