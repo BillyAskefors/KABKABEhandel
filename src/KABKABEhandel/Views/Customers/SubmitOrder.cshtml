@@ -1,19 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model KABKABEhandel.ViewModels.Customers.CreateCustomerViewModel
 <h1>Confirm order</h1>
+<div>
+    <h4>Orderinformation:</h4>
+    <p>Name @Model.FirstName @Model.LastName<p>
+    <p>Phone: @Model.Phone</p>
+    <h4>Leveransinfo:</h4>
+    <p>Adress: @Model.Street</p>
+    <p>Postnr: @Model.Zip</p>
+    <p>Ort: @Model.City</p>
+    <input type="button"  btn="btn btn primary" id="submit-order" value="Bekräfta order"/>
+</div>
+
+
 
 <script>
 
     $(document).ready(function () {
 
-        $("#submit-order").submit(function (e) {
+        $("#submit-order").click(function () {
 
-            e.preventDefault();
-
-            if ($(this).valid()) {
                 var orderDetails = [];
                 for (var i in localStorage) {
 
@@ -22,13 +27,13 @@
                         orderDetails.push(item);
                     }
                 }
-                alert(orderDetails.length);
+                
 
-                $.post("create", { order: orderDetails },
+                $.post("submitorder", { order: orderDetails },
                 function (data, status) {
-                     alert("Data: " + data + "\nStatus: " + status);
+                    alert("Data: " + data + "\nStatus: " + status);
                 });
-            }
+            
 
         });
     });

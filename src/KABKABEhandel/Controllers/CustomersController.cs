@@ -65,12 +65,24 @@ namespace KABKABEhandel.Controllers
         {
             var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
 
-            return View();
+            
+
+            return View(customer);
         }
 
         [HttpPost]
         public IActionResult SubmitOrder(List<OrderDetailViewModel> order)
         {
+            var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
+
+            if (order.Count > 0 && customer != null)
+            {
+                var newCustomer = new Customer(customer.FirstName, customer.LastName, "test@example33.se", customer.Phone);
+
+                var deliveryAddress = new Address{Street= customer.Street, ZipCode= customer.Zip, City = customer.City, Country = customer.Country};
+                
+            }
+
 
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KABKABEhandel.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -168,8 +169,7 @@ namespace KABKABEhandel.Models.DAL
             return msg;
 
         }
-
-
+     
         public List<Product> GetLatestProducts()
         {
             string msg; 
