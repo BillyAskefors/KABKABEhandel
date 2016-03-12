@@ -14,9 +14,18 @@ using Newtonsoft.Json;
 
 namespace KABKABEhandel.Controllers
 {
+
+    
     public class CustomersController : Controller
     {
+        DataManager dataManager;
         // GET: /<controller>/
+
+        public CustomersController()
+        {
+            dataManager = new DataManager(new EHandelDB()); 
+        }
+
         public IActionResult Index()
         {
            
@@ -77,10 +86,7 @@ namespace KABKABEhandel.Controllers
 
             if (order.Count > 0 && customer != null)
             {
-                var newCustomer = new Customer(customer.FirstName, customer.LastName, "test@example33.se", customer.Phone);
-
-                var deliveryAddress = new Address{Street= customer.Street, ZipCode= customer.Zip, City = customer.City, Country = customer.Country};
-                
+                dataManager.SubmitOrder(customer, order); 
             }
 
 

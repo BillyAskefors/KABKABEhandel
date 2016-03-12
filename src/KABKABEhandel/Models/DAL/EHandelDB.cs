@@ -124,7 +124,7 @@ namespace KABKABEhandel.Models.DAL
 
         }
 
-        private string SubmitOrder(Customer newCustomer, Address address, List<Product> shoppingCart)
+        public string SubmitOrder(Customer newCustomer, Address address, List<Product> shoppingCart)
         {
             string msg;
 

@@ -1,5 +1,6 @@
 ﻿using KABKABEhandel.Models.DAL;
 using KABKABEhandel.ViewModels;
+using KABKABEhandel.ViewModels.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,10 +100,39 @@ namespace KABKABEhandel.Models
                 .Select(order => new ListOrderHistoryViewModel { OrderId = order.OrderId, CurrentStatus = order.CurrentStatus, DateAndTime = order.DateAndTime, DeliveryAddress = order.DeliveryAddress })
                 .ToArray();
         }
-
-        public void SubmitOrder()
+        
+        public void SubmitOrder(CreateCustomerViewModel customer, List<OrderDetailViewModel> orders)
         {
-             
+            //var newCustomer = new Customer(customer.FirstName, customer.LastName, "test@example33.se", customer.Phone);
+
+            //var deliveryAddress = new Address { Street = customer.Street, ZipCode = customer.Zip, City = customer.City, Country = customer.Country };
+
+            var newOrder = orders.Select(item => new Product { Id = Convert.ToInt32(item.Id), Quantity = Convert.ToInt32(item.Quantity), Vat = 0, Price = 0 }).ToList();
+            Customer newCustomer = new Customer("Anders", "Larssson", "a.larsso@example.com", "09011111111");
+
+            Address address = new Address();
+            address.City = "Luleå";
+            address.Street = "Ågatan 44";
+            address.ZipCode = "19012";
+            address.Country = "Sweden";
+
+            List<Product> products = new List<Product>();
+            Product p = new Product();
+            p.Id = 1;
+            p.Price = 0;
+            p.Vat = 0;
+            p.Quantity = 33;
+            products.Add(p);
+            Product p2 = new Product();
+            p2.Id = 4;
+            p2.Price = 0;
+            p2.Vat = 0;
+            p2.Quantity = 9000;
+            products.Add(p2);
+           
+
+
+            db.SubmitOrder(newCustomer, address , products);
         }
 
         //public string ListDetails(int id)
