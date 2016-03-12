@@ -38,6 +38,7 @@ namespace KABKABEhandel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -49,7 +50,7 @@ namespace KABKABEhandel
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            services.AddSession(); 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -90,6 +91,7 @@ namespace KABKABEhandel
 
             app.UseIdentity();
 
+            app.UseSession(); 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
