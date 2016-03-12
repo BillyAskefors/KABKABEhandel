@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Http;
 using KABKABEhandel.ViewModels.Customers;
 using KABKABEhandel.Models.DAL;
 using KABKABEhandel.Models;
 using KABKABEhandel.ViewModels;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,13 +43,35 @@ namespace KABKABEhandel.Controllers
 
         public IActionResult Create()
         {
+            
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create( List<OrderDetailViewModel> order)
+        public IActionResult Create( CreateCustomerViewModel customer)
         {
-       
+            if (!ModelState.IsValid)
+            {
+                return View(customer);
+            }
+
+            HttpContext.Session.SetString("CustomerViewModel", JsonConvert.SerializeObject(customer));
+
+            return RedirectToAction(nameof(CustomersController.SubmitOrder)); 
+        }
+
+        public IActionResult SubmitOrder()
+        {
+            var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitOrder(List<OrderDetailViewModel> order)
+        {
+
             return View();
         }
 
@@ -56,7 +80,7 @@ namespace KABKABEhandel.Controllers
 
         // return RedirectToAction(nameof(HomeController.Index));
 
-    
 
-}
+
+    }
 }

@@ -79,32 +79,3 @@
         </div>
 </form>
 
-<script>
-
-    $(document).ready(function () {
-
-        $("#submit-order").submit(function (e) {
-
-            e.preventDefault();
-
-            if ($(this).valid()) {
-                var orderDetails = [];
-                for (var i in localStorage) {
-
-                    if (i.indexOf("product-item-") > -1) {
-                        var item = JSON.parse(localStorage[i]);
-                        orderDetails.push(item);
-                    }
-                }
-                alert(orderDetails.length);
-
-                $.post("create", { order: orderDetails },
-                function (data, status) {
-                     alert("Data: " + data + "\nStatus: " + status);
-                });
-            }
-
-        });
-    });
-
-</script>
