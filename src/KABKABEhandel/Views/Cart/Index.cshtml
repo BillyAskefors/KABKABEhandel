@@ -5,7 +5,7 @@
 
             if (i.indexOf("product-item-") > -1) {
                 var item = JSON.parse(localStorage[i]);
-                $("#itemsInCart").append("<li id='product-item-" + item.Id + "'>" + item.Name + " quantity: " + item.Quantity + "<span>pc</span></li>")
+                $("#itemsInCart").append("<li id='product-item-" + item.id + "'>" + item.name + " quantity: " + item.quantity + "<span>pc</span></li>")
             }
         }
         $("#itemsInCart").on('click', "span", function () {
