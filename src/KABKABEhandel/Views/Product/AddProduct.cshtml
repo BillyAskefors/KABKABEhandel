@@ -6,59 +6,59 @@
     <title>Add product</title>
 </head>
 <body>
-    <h1>Add product</h1>
-    <form asp-controller="product" asp-action="add">
-        <label asp-for="CategoryId">Category Id</label><br />
-        <input asp-for="CategoryId" placeholder="Category Id" />
-        <span asp-validation-for="CategoryId"></span>
-        <br />
-        <br />
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name" placeholder="Name" />
-        <span asp-validation-for="Name"></span>
-        <br />
-        <br />
-        <label asp-for="Price">Price of product</label><br />
-        <input asp-for="Price" placeholder="Price" />
-        <span asp-validation-for="Price"></span>
-        <br />
-        <br />
-        <label asp-for="Vat">VAT of product</label><br />
-        <input asp-for="Vat" placeholder="VAT" />
-        <span asp-validation-for="Vat"></span>
-        <br />
-        <br />
-        <label asp-for="Discount">Price discount</label><br />
-        <input asp-for="Discount" placeholder="Discount" />
-        <span asp-validation-for="Discount"></span>
-        <br />
-        <br />
-        <label asp-for="NumberInStock">Product availability</label><br />
-        <input asp-for="NumberInStock" placeholder="Number in stock" />
-        <span asp-validation-for="NumberInStock"></span>
-        <br />
-        <br />
-        <label asp-for="Description">Product description</label><br />
-        <textarea rows="5" cols="50" asp-for="Description" placeholder="Description"></textarea>
-        <span asp-validation-for="Description"></span>
-        <br />
-        <br />
-        <label asp-for="ImageURL">Image URL</label><br />
-        <input cols="50" asp-for="ImageURL" placeholder="Image URL" />
-        <span asp-validation-for="ImageURL"></span>
-        <br />
-        <br />
-        <label asp-for="IsActive">Visible for customer</label><br />
-        <input asp-for="IsActive" />
-        <span asp-validation-for="IsActive"></span>
-        <br />
-        <br />
-        @*<label asp-for="AcceptTerms">I accpet terms and conditions</label><br />
-            <input asp-for="AcceptTerms" type="checkbox" />
-            <span asp-validation-for="AcceptTerms"></span>*@
-        <br />
-        @*<input type="checkbox" name="terms" value="terms">I accpet terms and conditions<br />*@
-        <input type="submit" value="Add" />
-    </form>
+        <h1>Add product</h1>
+        <form asp-controller="product" asp-action="add">
+            <label asp-for="CategoryId">Category Id</label><br />
+            <input asp-for="CategoryId" placeholder="Category Id" />
+            <span asp-validation-for="CategoryId"></span>
+            <br />
+            <br />
+            <label asp-for="Name"></label><br />
+            <input asp-for="Name" placeholder="Name" />
+            <span asp-validation-for="Name"></span>
+            <br />
+            <br />
+            <label asp-for="Price">Price of product</label><br />
+            <input asp-for="Price" placeholder="Price" />
+            <span asp-validation-for="Price"></span>
+            <br />
+            <br />
+            <label asp-for="Vat">VAT of product</label><br />
+            <input asp-for="Vat" placeholder="VAT" />
+            <span asp-validation-for="Vat"></span>
+            <br />
+            <br />
+            <label asp-for="Discount">Price discount</label><br />
+            <input asp-for="Discount" placeholder="Discount" />
+            <span asp-validation-for="Discount"></span>
+            <br />
+            <br />
+            <label asp-for="NumberInStock">Product availability</label><br />
+            <input asp-for="NumberInStock" placeholder="Number in stock" />
+            <span asp-validation-for="NumberInStock"></span>
+            <br />
+            <br />
+            <label asp-for="Description">Product description</label><br />
+            <textarea rows="5" cols="50" asp-for="Description" placeholder="Description"></textarea>
+            <span asp-validation-for="Description"></span>
+            <br />
+            <br />
+            <label asp-for="ImageURL">Image URL</label><br />
+            <input cols="50" asp-for="ImageURL" placeholder="Image URL" />
+            <span asp-validation-for="ImageURL"></span>
+            <br />
+            <br />
+            <label asp-for="IsActive">Visible for customer</label><br />
+            <input asp-for="IsActive" />
+            <span asp-validation-for="IsActive"></span>
+            <br />
+            <br />
+            @*<label asp-for="AcceptTerms">I accpet terms and conditions</label><br />
+                <input asp-for="AcceptTerms" type="checkbox" />
+                <span asp-validation-for="AcceptTerms"></span>*@
+            <br />
+            @*<input type="checkbox" name="terms" value="terms">I accpet terms and conditions<br />*@
+            <input type="submit" value="Add" />
+        </form>
 </body>
 </html>

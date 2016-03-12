@@ -7,7 +7,7 @@
             @foreach (var item in Model)
             {
                 <div class="item">
-                    <img src="@item.ID" class="img-responsive" />
+                    <img src="@item.ImageURL" class="img-responsive" />
                 </div>
                 <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
                 <h5 id="@string.Format("price{0}",item.ID)">@item.Price</h5>
