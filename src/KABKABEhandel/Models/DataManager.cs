@@ -101,20 +101,36 @@ namespace KABKABEhandel.Models
                 .ToArray();
         }
         
-        public void SubmitOrder(CreateCustomerViewModel customer, List<OrderDetailViewModel> orders)
+        public void SubmitOrder(CreateCustomerViewModel customer, List<OrderDetailViewModel> orders, out string msg)
         {
-            var newCustomer = new Customer(customer.FirstName, customer.LastName, "test@example33.se", customer.Phone);
+            msg = "success";
+            //var newCustomer = new Customer(customer.FirstName, customer.LastName,"test@example3311.se", customer.Phone);
 
-            var deliveryAddress = new Address { Street = customer.Street, ZipCode = customer.Zip, City = customer.City, Country = customer.Country };
+            var products = new List<Product>();
+            try
+            {   foreach (var n in orders)
+                {
+                    Product tmp = new Product();
+                    tmp.Id = Convert.ToInt32(n.Id);
+                    tmp.Price = 0.0M;
+                    tmp.Vat = 0.0;
+                    tmp.Quantity = Convert.ToInt32(n.Quantity);
+                    products.Add(tmp);
+                }
+                    msg = "success";
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
 
-            var products = orders.Select(item => new Product { Id = Convert.ToInt32(item.Id), Quantity = Convert.ToInt32(item.Quantity), Vat = 0, Price = 0 }).ToList();
-            //Customer newCustomer = new Customer("Anders", "Larssson", "a.larsso@example.com", "09011111111");
+            Customer newCustomer = new Customer("Anders", "Larssson", "a.larsso@example.com", "09011111111");
 
-            //Address address = new Address();
-            //address.City = "Luleå";
-            //address.Street = "Ågatan 44";
-            //address.ZipCode = "19012";
-            //address.Country = "Sweden";
+            Address address = new Address();
+            address.City = "Umeå";
+            address.Street = "Ågatan 4444";
+            address.ZipCode = "19012";
+            address.Country = "Sweden";
 
             //List<Product> products = new List<Product>();
             //Product p = new Product();
@@ -129,10 +145,8 @@ namespace KABKABEhandel.Models
             //p2.Vat = 0;
             //p2.Quantity = 9000;
             //products.Add(p2);
-           
 
-
-            //db.SubmitOrder(newCustomer, deliveryAddress , products);
+            db.SubmitOrder(newCustomer, address , products);
         }
 
         //public string ListDetails(int id)

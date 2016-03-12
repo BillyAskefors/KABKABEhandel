@@ -1,6 +1,6 @@
 ﻿@model KABKABEhandel.ViewModels.Customers.CreateCustomerViewModel
 <h1>Confirm order</h1>
-<div>
+<div id="order-confirmation">
     <h4>Orderinformation:</h4>
     <p>Name @Model.FirstName @Model.LastName<p>
     <p>Phone: @Model.Phone</p>
@@ -32,6 +32,12 @@
                 $.post("submitorder", { order: orderDetails },
                 function (data, status) {
                     alert("Data: " + data + "\nStatus: " + status);
+                    if (data === "success")
+                    {
+                        alert("Köp godkänt");
+                        localStorage.clear(); 
+                        $("#order-confirmation").html("<h4>Tack för ditt köp</h4>");
+                     }
                 });
             
 

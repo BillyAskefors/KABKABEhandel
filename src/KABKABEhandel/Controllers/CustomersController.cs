@@ -83,21 +83,15 @@ namespace KABKABEhandel.Controllers
         public IActionResult SubmitOrder(List<OrderDetailViewModel> order)
         {
             var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
-
+            string msg = "fail"; 
             if (order.Count > 0 && customer != null)
             {
-                dataManager.SubmitOrder(customer, order); 
+                dataManager.SubmitOrder(customer, order, out msg); 
             }
 
 
-            return View();
+            return Json(msg);
         }
-
-        //Lägg här in kod för att lägga konvertera viewModel till en model som går att 
-        //skicka in i databasen.
-
-        // return RedirectToAction(nameof(HomeController.Index));
-
 
 
     }
