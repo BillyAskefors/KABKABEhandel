@@ -50,7 +50,8 @@ namespace KABKABEhandel
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-            services.AddSession(); 
+            services.AddSession();
+            services.AddCaching();
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -90,7 +91,7 @@ namespace KABKABEhandel
             app.UseStaticFiles();
 
             app.UseIdentity();
-
+            
             app.UseSession(); 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
