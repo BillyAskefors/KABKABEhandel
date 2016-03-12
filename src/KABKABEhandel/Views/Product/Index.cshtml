@@ -25,7 +25,7 @@
         //Skickar in i javascripklassen
         var product = new Product(id, quantity, vat, price, name);
 
-        localStorage.setItem("product-item-" + product.id, JSON.stringify(product));
+        localStorage.setItem("product-item-" + product.Id, JSON.stringify(product));
 
         $("#shopcartQuantity").text(localStorage.length);
     }
