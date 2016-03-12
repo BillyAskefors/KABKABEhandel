@@ -1,49 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Product Page";
 }
-
 @model KABKABEhandel.ViewModels.ListProductViewModel[]
-
 <script>
-  
+
     //javascript class
-    function Product (id, quantity, vat, price, name) {
+    function Product (id, quantity, vat, price, name, imageURL) {
         this.Id = id;
         this.Quantity = quantity;
         this.Vat = vat;
         this.Price = price;
-        this.Name = name; 
+        this.Name = name;
+        this.ImageURL = imageURL;
     }
 
-    
+
     function addToCart(id){ //anropas när vi klickar på add
 
         //Hämtar info
         var quantity = $("#quantity" + id + " option:selected").text();
         var vat = $("#vat" + id).text();
-        var price = $("#price" + id).text();        
-        var name = $("#name" + id).text(); 
+        var price = $("#price" + id).text();
+        var name = $("#name" + id).text();
         //Skickar in i javascripklassen
         var product = new Product(id, quantity, vat, price, name);
 
-        localStorage.setItem("product-item-" + product.Id, JSON.stringify(product));
+        localStorage.setItem("product-item-" + product.id, JSON.stringify(product));
 
-        $("#shopcartQuantity").text(localStorage.length); 
+        $("#shopcartQuantity").text(localStorage.length);
     }
 
-   
+
     function viewProductInfo(id){  //när vi klickar på product info visas modal
-        
+
         //Hämtar aktuell info.
         var details = $("#details" + id).text();
         var vat = $("#vat" + id).text();
         var price = $("#price" + id).text();
         var name = $("#name" + id).text();
         //Anpassar modal.
-        $('#detailsInfo').val(details);
-        $('#vatInfo').val(vat);
-        $('#priceInfo').val(price);
-        $('#nameInfo').val(name);
+        $('#detailsInfo').text(details);
+        $('#vatInfo').text(vat);
+        $('#priceInfo').text(price);
+        $('#nameInfo').text(name);
         //Visar modal
         $('#myModal').modal('show');
 
@@ -55,85 +54,69 @@
 
             @foreach (var item in Model)
             {
-                <div class="item">
-                    <img src="@item.ID" class="img-responsive" />
-                </div>
-                    <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
-                    <h2 id="@string.Format("price{0}",item.ID)">@item.Price</h2>                    
+                <h2 id="@string.Format("name{0}",item.ID)">@item.Name</h2>
+                    <div class="item">
+                        <img src="@item.ImageURL" class="img-responsive" />
+                    </div>
+                    <h5 id="@string.Format("price{0}",item.ID)">@item.Price</h5>
                     <h2 hidden id="@string.Format("details{0}",item.ID)">@item.Details</h2>
                     <h2 hidden id="@string.Format("vat{0}",item.ID)">@item.Vat</h2>
-                    <h2 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">Product Details</h2>
+                    <h5 style="cursor:pointer" onclick="viewProductInfo(@item.ID)">View details</h5>
                     <div class="form-group">
-                        <label for="sel1">Select list:</label>
+                        <label for="sel1">Quantity:</label>
                         <select class="form-control" id="@string.Format("quantity{0}",item.ID)">
                             <option>1</option>
-
                             <option>2</option>
-
                             <option>3</option>
-
                             <option>4</option>
-
                             <option>5</option>
-
                             <option>6</option>
-
                             <option>7</option>
-
                             <option>8</option>
-
                             <option>9</option>
-
                             <option>10</option>
-
                         </select>
-
                     </div>
 
 
                     <button type="button" id="buyBtn" onclick="addToCart(@item.ID)">Add to cart</button>
 
 
-    }
-
-
+            }
 
         </div>
     </div>
 </form>
-
 <div class="container">
-
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"></h4>
+                    <h4 class="modal-title" id="nameInfo"></h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="nameInfo" id="nameInfo" value="" />
-                    <input type="text" name="priceInfo" id="priceInfo" value="" />
-                    <input type="text" name="vatInfo" id="vatInfo" value="" />
-                    <input type="text" name="detailsInfo" id="detailsInfo" value="" />
+                    <div class="panel-group">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Details</div>
+                            <div class="panel-body" id="detailsInfo"></div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Price</div>
+                            <div class="panel-body" id="priceInfo"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
-
-
-
-
 
 
 
