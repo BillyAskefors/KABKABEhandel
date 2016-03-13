@@ -104,9 +104,7 @@ namespace KABKABEhandel.Models
         public void SubmitOrder(CreateCustomerViewModel customer, List<OrderDetailViewModel> orders, out string msg)
         {
             msg = "success";
-            var newCustomer = new Customer(customer.FirstName, customer.LastName,"test@example33112.se", customer.Phone);
-
-       
+            var newCustomer = new Customer(customer.FirstName, customer.LastName,"test@example3311222.se", customer.Phone);
 
             var products = new List<Product>();
             try
@@ -126,27 +124,14 @@ namespace KABKABEhandel.Models
                 msg = ex.Message;
             }
 
-            // Customer newCustomer = new Customer("Anders", "Larssson", "a.larsso@example.com", "09011111111");
-
+            
+            //Fel i hanteringen av addresser.
             Address address = new Address();
-            address.City = "Umeå";
+            address.City = "Åland";
             address.Street = "Ågatan 4444";
             address.ZipCode = "19012";
             address.Country = "Sweden";
 
-            //List<Product> products = new List<Product>();
-            //Product p = new Product();
-            //p.Id = 1;
-            //p.Price = 0;
-            //p.Vat = 0;
-            //p.Quantity = 33;
-            //products.Add(p);
-            //Product p2 = new Product();
-            //p2.Id = 4;
-            //p2.Price = 0;
-            //p2.Vat = 0;
-            //p2.Quantity = 9000;
-            //products.Add(p2);
 
             db.SubmitOrder(newCustomer, address , products);
         }

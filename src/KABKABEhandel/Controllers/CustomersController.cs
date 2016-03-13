@@ -52,8 +52,7 @@ namespace KABKABEhandel.Controllers
 
         public IActionResult Create()
         {
-            
-
+           
             return View();
         }
 
@@ -72,24 +71,30 @@ namespace KABKABEhandel.Controllers
 
         public IActionResult SubmitOrder()
         {
-            var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
-
             
+            if (HttpContext.Session.GetString("CustomerViewModel") != null)
+            {
+                var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
+                return View(customer);
+            }
 
-            return View(customer);
+            return RedirectToAction(nameof(CustomersController.Create));
         }
 
         [HttpPost]
         public IActionResult SubmitOrder(List<OrderDetailViewModel> order)
         {
-            var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
-            string msg = "fail"; 
-            if (order.Count > 0 && customer != null)
+            string msg = "fail";
+            
+            if (HttpContext.Session.GetString("CustomerViewModel") != null)
             {
-                dataManager.SubmitOrder(customer, order, out msg); 
+                var customer = JsonConvert.DeserializeObject<CreateCustomerViewModel>(HttpContext.Session.GetString("CustomerViewModel"));
+              
+                if (order.Count > 0 && customer != null)
+                {
+                    dataManager.SubmitOrder(customer, order, out msg);
+                }
             }
-
-
             return Json(msg);
         }
 
