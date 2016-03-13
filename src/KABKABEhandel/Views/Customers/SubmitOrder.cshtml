@@ -31,11 +31,12 @@
 
                 $.post("submitorder", { order: orderDetails },
                 function (data, status) {
-                    alert("Data: " + data + "\nStatus: " + status);
+                   
                     if (data === "success") {
-                        alert("Köp godkänt");
+                    
                         localStorage.clear();
                         $("#order-confirmation").html("<h4>Tack för ditt köp</h4>");
+                        $("#shopcartQuantity").text(" " + ProductsInCart() + " st");
                     }
                     else if (localStorage.length === 0) {
                         alert("Din varukorg är tom.");

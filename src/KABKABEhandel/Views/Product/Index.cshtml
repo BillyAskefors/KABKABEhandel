@@ -27,7 +27,7 @@
 
         localStorage.setItem("product-item-" + product.Id, JSON.stringify(product));
 
-        $("#shopcartQuantity").text(localStorage.length);
+        $("#shopcartQuantity").text(" " + ProductsInCart() + " st");
     }
 
 

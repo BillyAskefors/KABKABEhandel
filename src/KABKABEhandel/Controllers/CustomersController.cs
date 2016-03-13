@@ -52,7 +52,11 @@ namespace KABKABEhandel.Controllers
 
         public IActionResult Create()
         {
-           
+            if (HttpContext.Session.GetString("CustomerViewModel") != null)
+            {
+                return RedirectToAction(nameof(CustomersController.SubmitOrder));
+            }
+
             return View();
         }
 
