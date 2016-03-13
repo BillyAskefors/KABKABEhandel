@@ -37,7 +37,7 @@ namespace KABKABEhandel.ViewModels.Customers
         public string Country { get; set; }
 
         [Display(Name = "Godkänn våra köpvillkor")]
-       // [Range(typeof(bool), "true", "true", ErrorMessage = "Du måste godkänna våra köpvillkor!")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Du måste godkänna våra köpvillkor!")]
         public bool AcceptTerms { get; set; }
 
     }
