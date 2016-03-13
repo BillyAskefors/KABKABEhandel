@@ -20,7 +20,7 @@ namespace KABKABEhandel.Models.DAL
 
         }
 
-        private int AddProduct(Product newProduct, out string msg)
+        public int AddProduct(Product newProduct, out string msg)
         {
             int newProductId;
             cmd = new SqlCommand();
@@ -29,13 +29,12 @@ namespace KABKABEhandel.Models.DAL
             cmd.Parameters.Add(new SqlParameter("@CategoryID", SqlDbType.Int)).Value = newProduct.CategoryId;
             cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 30)).Value = newProduct.Name;
             cmd.Parameters.Add(new SqlParameter("@Price", SqlDbType.Money)).Value = newProduct.Price;
-            cmd.Parameters.Add(new SqlParameter("@Description", SqlDbType.NVarChar, 800)).Value = newProduct.Description;
+            cmd.Parameters.Add(new SqlParameter("@Description", SqlDbType.NVarChar, 800)).Value = newProduct.Description == null ? "": newProduct.Description;
             cmd.Parameters.Add(new SqlParameter("@IsActive", SqlDbType.Bit)).Value = newProduct.IsActive;
             cmd.Parameters.Add(new SqlParameter("@Discount", SqlDbType.Float)).Value = newProduct.Discount;
-            cmd.Parameters.Add(new SqlParameter("@ImageURL", SqlDbType.NVarChar, 320)).Value = newProduct.ImageURL;
-            cmd.Parameters.Add(new SqlParameter("@Vat", SqlDbType.Float)).Value = newProduct.Discount;
-
-
+            cmd.Parameters.Add(new SqlParameter("@ImageURL", SqlDbType.NVarChar, 320)).Value = newProduct.ImageURL == null ? "" : newProduct.ImageURL;
+            cmd.Parameters.Add(new SqlParameter("@VAT", SqlDbType.Float)).Value = newProduct.Vat;
+         
             SqlParameter outputParam = cmd.Parameters.Add("@new_id", SqlDbType.Int);
             outputParam.Direction = ParameterDirection.Output;
 
@@ -159,12 +158,12 @@ namespace KABKABEhandel.Models.DAL
                 product.Id = Convert.ToInt32(row["Id"].ToString());
                 product.Name = row["Name"].ToString();
                 product.ImageURL = row["ImageUrl"].ToString();
-                product.Vat = Convert.ToDouble(row["Vat"].ToString());
-                product.Price = Convert.ToDecimal(row["Price"].ToString());
+                product.Vat = row["Vat"].ToString() == null ? 0: Convert.ToDouble(row["Vat"].ToString());
+                product.Price = row["Price"].ToString() == null ? 0 : Convert.ToDecimal(row["Price"].ToString());
                 product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
                 product.Description = row["Description"].ToString();
-                product.Discount = Convert.ToDouble(row["Discount"].ToString());
-                product.NumberInStock = Convert.ToInt32(row["NrInStock"].ToString());
+                product.Discount = row["Discount"].ToString() == null ? 0 :  Convert.ToDouble(row["Discount"].ToString());
+                product.NumberInStock = string.IsNullOrWhiteSpace(row["NrInStock"].ToString()) ? 0 : Convert.ToInt32(row["NrInStock"].ToString());
 
                 latestProducts.Add(product); 
 
@@ -196,13 +195,13 @@ namespace KABKABEhandel.Models.DAL
                 product.Id = Convert.ToInt32(row["Id"].ToString());
                 product.Name = row["Name"].ToString();
                 product.ImageURL = row["ImageUrl"].ToString();
-                product.Vat = Convert.ToDouble(row["Vat"].ToString());
+                product.Vat = string.IsNullOrWhiteSpace(row["Vat"].ToString()) ? 0: Convert.ToDouble(row["Vat"].ToString());
                 //product.Price = Convert.ToDecimal(row["Price"].ToString());
-                product.Price = Decimal.Round(Convert.ToDecimal(row["Price"].ToString()), 2, MidpointRounding.AwayFromZero); 
-                product.IsActive = Convert.ToBoolean(row["IsActive"].ToString());
+                product.Price = string.IsNullOrWhiteSpace(row["Price"].ToString())? 0: Decimal.Round(Convert.ToDecimal(row["Price"].ToString()), 2, MidpointRounding.AwayFromZero); 
+                product.IsActive = string.IsNullOrWhiteSpace(row["IsActive"].ToString()) ? false: Convert.ToBoolean(row["IsActive"].ToString());
                 product.Description = row["Description"].ToString();
-                product.Discount = Convert.ToDouble(row["Discount"].ToString());
-                product.NumberInStock = Convert.ToInt32(row["NrInStock"].ToString());
+                product.Discount = string.IsNullOrWhiteSpace(row["Discount"].ToString()) ? 0:Convert.ToDouble(row["Discount"].ToString());
+                product.NumberInStock = string.IsNullOrWhiteSpace(row["NrInStock"].ToString()) ? 0 : Convert.ToInt32(row["NrInStock"].ToString());
 
                 latestProducts.Add(product);
 

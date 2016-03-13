@@ -6,6 +6,7 @@ using Microsoft.AspNet.Mvc;
 using KABKABEhandel.Models;
 using KABKABEhandel.Models.DAL;
 using KABKABEhandel.ViewModels;
+using Microsoft.AspNet.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,21 +41,21 @@ namespace KABKABEhandel.Controllers
 
                 return View(viewModels);
         }
-
+        [Authorize]
         public IActionResult AddProduct()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost] //om en post fungerar ska den sluta med redirect
         public IActionResult AddProduct(AddProductViewModel product)
         {
             if (!ModelState.IsValid)
                 return View(product);
-
-            var dataManager = new DataManager(new EHandelDB());
-            dataManager.AddProduct(product);
-
+            string msg; 
+            dataManager.AddProduct(product, out msg);
+            ViewBag.msg = msg; 
             return RedirectToAction(nameof(ProductController.AddProduct));
         }
 

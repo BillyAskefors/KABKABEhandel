@@ -10,6 +10,7 @@ namespace KABKABEhandel.ViewModels
     {
         [Display(Name = "Category Id")]
         [Required(ErrorMessage = "Enter a category id")]
+        [Range(1,4,ErrorMessage = "Category id must be between 1-4")]
         public int CategoryId { get; set; }
 
         [Display(Name = "Product name")]
@@ -39,6 +40,7 @@ namespace KABKABEhandel.ViewModels
         public string ImageURL { get; set; }
 
         // Add validator
+  
         public bool IsActive { get; set; }
 
         //[Display(Name = "I accept terms and conditions")]

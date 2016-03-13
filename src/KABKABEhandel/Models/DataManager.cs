@@ -26,19 +26,25 @@ namespace KABKABEhandel.Models
             db = dbContext; 
         }
 
-        public void AddProduct(AddProductViewModel viewModel)
+        public void AddProduct(AddProductViewModel viewModel, out string msg)
         {
-            var product = new Product();
 
-            product.Name = viewModel.Name;
-            product.Price = viewModel.Price;
-            product.IsActive = viewModel.IsActive;
+            var product = new Product {
+                CategoryId = viewModel.CategoryId,
+                Name = viewModel.Name,
+                Description = viewModel.Description,
+                Discount = viewModel.Discount,
+                Vat = viewModel.Vat,
+                ImageURL = viewModel.ImageURL,
+                IsActive = viewModel.IsActive,
+                NumberInStock = viewModel.NumberInStock,
+                Price = viewModel.Price,
+                Quantity = viewModel.NumberInStock,  
+             };
+           
 
-            //db.AddProduct(product);
-            //db.SaveChanges();
-
-
-            products.Add(product);
+            db.AddProduct(product, out msg);
+          
         }
 
         public void EditProduct(EditProductViewModel viewModel)
